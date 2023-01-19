@@ -15,7 +15,20 @@ namespace Project0
         Education eduobj = new Education();
         public void display()
         {
-
+            Console.WriteLine("Enter Register Number (within 100 words) : ");
+            eduobj.REGISTER_NO = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter College Name (within 100 words): ");
+            eduobj.COLLEGE_NAME = Console.ReadLine();
+            Console.WriteLine("Enter Stream (within 100 words): ");
+            eduobj.STREAM = Console.ReadLine();
+            Console.WriteLine("Enter Branch (within 100 words): ");
+            eduobj.BRANCH = Console.ReadLine();
+            Console.WriteLine("Enter Percentage (within 100 words): ");
+            eduobj.PERCENTAGE = float.Parse(Console.ReadLine());
+            Console.WriteLine("Enter Start Year (within 100 words): ");
+            eduobj.START_YEAR = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter End Year (within 100 words): ");
+            eduobj.END_YEAR = Convert.ToInt32(Console.ReadLine());
         }
 
         public Education display1(Education eduobj)
@@ -30,9 +43,9 @@ namespace Project0
             eduobj.BRANCH = Console.ReadLine();
             Console.WriteLine("Enter Percentage (within 100 words): ");
             eduobj.PERCENTAGE = float.Parse(Console.ReadLine());
-            Console.WriteLine("Enter Branch (within 100 words): ");
+            Console.WriteLine("Enter Start Year (within 100 words): ");
             eduobj.START_YEAR = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter Branch (within 100 words): ");
+            Console.WriteLine("Enter End Year (within 100 words): ");
             eduobj.END_YEAR = Convert.ToInt32(Console.ReadLine());
             //GetEmail();
             return eduobj;
@@ -51,7 +64,7 @@ namespace Project0
         }
         public void AddDetails(Education Tb, int ID)
         {
-            Tb = display1(Tb);
+            //Tb = display1(Tb);
             // Console.WriteLine(Tb.FullName);
             //Console.WriteLine(Tb.Email);
             Console.WriteLine(ID);

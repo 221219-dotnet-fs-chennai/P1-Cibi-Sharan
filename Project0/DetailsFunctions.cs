@@ -17,20 +17,21 @@ namespace Project0
         public void display() {
             // enter details
             
-            Console.WriteLine("Enter your fullname : ");
-            detailsobj.FullName = Console.ReadLine();
-            Console.WriteLine("Enter your gender : ");
-            detailsobj.Gender = Console.ReadLine();
-            Console.WriteLine("Enter your address : ");
-            detailsobj.Address = Console.ReadLine();
-            Console.WriteLine("Add About Me : ");
-            detailsobj.AboutMe = Console.ReadLine();
-            Console.WriteLine("Enter your Phone Number : ");
-            detailsobj.PhoneNo = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Add your website : ");
-            detailsobj.Website = Console.ReadLine();
+            //Console.WriteLine("Enter your fullname : ");
+            //detailsobj.FullName = Console.ReadLine();
+            //Console.WriteLine("Enter your gender : ");
+            //detailsobj.Gender = Console.ReadLine();
+            //Console.WriteLine("Enter your address : ");
+            //detailsobj.Address = Console.ReadLine();
+            //Console.WriteLine("Add About Me : ");
+            //detailsobj.AboutMe = Console.ReadLine();
+            //Console.WriteLine("Enter your Phone Number : ");
+            //detailsobj.PhoneNo = Convert.ToInt64(Console.ReadLine());
+            //Console.WriteLine("Add your website : ");
+            //detailsobj.Website = Console.ReadLine();
             //Console.WriteLine("Enter your Email : ");
             //GetEmail();
+
             
         }
         public Details display1(Details detailsobj)
@@ -90,6 +91,8 @@ namespace Project0
             sqlCommand.Parameters.AddWithValue("@phone_No", Tb.PhoneNo);
             sqlCommand.Parameters.AddWithValue("@email", Tb.Email);
             sqlCommand.Parameters.AddWithValue("@website", Tb.Website);
+            Console.WriteLine("Press Enter to Save the details");
+            Console.ReadLine();
             int rows = sqlCommand.ExecuteNonQuery();
             Console.WriteLine(rows + "row(s) added");
             Console.WriteLine("Details Added");

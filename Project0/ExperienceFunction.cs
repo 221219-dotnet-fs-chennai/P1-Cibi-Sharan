@@ -16,7 +16,13 @@ namespace Project0
 
         public void display()
         {
-
+            Console.WriteLine("Enter Company 1 (within 100 words) : ");
+            experienceobj.COMPANY1 = Console.ReadLine();
+            Console.WriteLine("Enter Company 2 (within 100 words): ");
+            experienceobj.COMPANY2 = Console.ReadLine();
+            Console.WriteLine("Enter Company 3 (within 100 words): ");
+            experienceobj.COMPANY3 = Console.ReadLine();
+            Console.WriteLine("Add About Me : ");
         }
 
         public Experience display1(Experience experienceobj)
@@ -46,7 +52,7 @@ namespace Project0
 
         public void AddDetails(Experience Tb, int ID)
         {
-            Tb = display1(Tb);
+            //Tb = display1(Tb);
             // Console.WriteLine(Tb.FullName);
             //Console.WriteLine(Tb.Email);
             Console.WriteLine(ID);

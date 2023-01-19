@@ -17,13 +17,13 @@ namespace Project0
         {
             // enter details
 
-            //Console.WriteLine("Enter Skill_1 (within 100 words) : ");
-            //skillsobj.SKILL_1 = Console.ReadLine();
-            //Console.WriteLine("Enter Skill_2 (within 100 words): ");
-            //skillsobj.SKILL_2 = Console.ReadLine();
-            //Console.WriteLine("Enter Skill_3 (within 100 words): ");
-            //skillsobj.SKILL_3 = Console.ReadLine();
-            //Console.WriteLine("Add About Me : ");        
+            Console.WriteLine("Enter Skill_1 (within 100 words) : ");
+            skillsobj.SKILL_1 = Console.ReadLine();
+            Console.WriteLine("Enter Skill_2 (within 100 words): ");
+            skillsobj.SKILL_2 = Console.ReadLine();
+            Console.WriteLine("Enter Skill_3 (within 100 words): ");
+            skillsobj.SKILL_3 = Console.ReadLine();
+            Console.WriteLine("Add About Me : ");
         }
 
         public Skills display1(Skills skillsobj)
@@ -54,7 +54,7 @@ namespace Project0
 
         public void AddDetails(Skills Tb, int ID)
         {
-            Tb = display1(Tb);
+            //Tb = display1(Tb);
             // Console.WriteLine(Tb.FullName);
             //Console.WriteLine(Tb.Email);
             Console.WriteLine(ID);

@@ -105,36 +105,76 @@ namespace Project0
 
                                     Console.WriteLine("Hellooo new user"); repeat = false;
                                     Console.WriteLine("Your Email : " + table.Email);
-                                    Console.WriteLine("Press Enter to Add your details : ");
-                                    Console.ReadLine();
-                                    Console.Clear();
-                                    SqlRepo sqlrepo_obj = new SqlRepo(); 
-                                    sqlrepo_obj.AddDetails(table, 0);
-                                    Details detailobj1 = new Details();
-                                    DetailsFunctions addobj1 = new DetailsFunctions();
-                                    detailobj1 = addobj1.GetEmail(table.Email);
-                                    int signupID = signuprepo.CheckId(table.Email);
-                                    addobj1.AddDetails(detailobj1, signupID);
+                                    // operations menu
+                                    operationmenu:
+                                    menu = new OperationsMenu();
+                                    menu.display();
+                                    string menuopt = menu.UserChoice();
+                                    switch(menuopt)
+                                    {
+                                        case "Exit":
+                                            //logic
+                                            break;
+                                        case "Add Details":
+                                            //logic
+                                            Console.WriteLine("Press Enter to Add your details : ");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            SqlRepo sqlrepo_obj = new SqlRepo();
+                                            sqlrepo_obj.AddDetails(table, 0);
+                                            Details detailobj1 = new Details();
+                                            DetailsFunctions addobj1 = new DetailsFunctions();
+                                            //detailobj1 = addobj1.display1(detailobj1);
+                                            detailobj1 = addobj1.GetEmail(table.Email);
+                                            int signupID = signuprepo.CheckId(table.Email);
+                                            addobj1.AddDetails(detailobj1, signupID);
 
-                                    // To Add Skills Table
+                                            // To Add Skills Table
 
-                                    Console.WriteLine("\n");
-                                    Console.WriteLine("Press Enter to Add Skills Details : ");
-                                    Console.ReadLine(); Console.Clear();
-                                    Skills skillobj1 = new Skills();
-                                    SkillsFunction addskill = new SkillsFunction();
-                                   
-                                    int skillId = signuprepo.CheckId(table.Email);
-                                    addskill.AddDetails(skillobj1, skillId);
+                                            Console.WriteLine("\n");
+                                            Console.WriteLine("Press Enter to Add Skills Details : ");
+                                            Console.ReadLine(); Console.Clear();
+                                            Skills skillobj1 = new Skills();
 
-                                    Console.WriteLine("\n");
-                                    Console.WriteLine("Press Enter to Add Skills Details : ");
-                                    Console.ReadLine(); Console.Clear();
-                                    Experience expobj1 = new Experience();
-                                    ExperienceFunction addexp = new ExperienceFunction();
-                                   
-                                    int ExpId = signuprepo.CheckId(table.Email);
-                                    addexp.AddDetails(expobj1, ExpId);
+                                            SkillsFunction addskill = new SkillsFunction();
+                                            //addskill.display();
+
+                                            int skillId = signuprepo.CheckId(table.Email);
+                                            addskill.AddDetails(skillobj1, skillId);
+
+                                            Console.WriteLine("\n");
+                                            Console.WriteLine("Press Enter to Add Experience Details : ");
+                                            Console.ReadLine(); Console.Clear();
+                                            Experience expobj1 = new Experience();
+                                            ExperienceFunction addexp = new ExperienceFunction();
+                                            //addexp.display();
+                                            int ExpId = signuprepo.CheckId(table.Email);
+                                            addexp.AddDetails(expobj1, ExpId);
+
+                                            Console.WriteLine("\n");
+                                            Console.WriteLine("Press Enter to Add Education Details : ");
+                                            Console.ReadLine(); Console.Clear();
+                                            Education eduobj1 = new Education();
+                                            EducationFunction addedu = new EducationFunction();
+                                            //addedu.display();
+                                            int EduId = signuprepo.CheckId(table.Email);
+                                            addedu.AddDetails(eduobj1, EduId);
+
+                                            break;
+                                        case "Update Details":
+                                            //logic
+                                            break;
+                                        case "Delete Details":
+                                            //logic 
+                                            break;
+                                        default:
+                                            Console.WriteLine("Page does not exist!");
+                                            Console.WriteLine("Please press Valid Input!");
+                                            goto operationmenu;
+                                           // break;
+
+                                    }
+                                    
                                 }
                                 break;
 
@@ -171,6 +211,8 @@ namespace Project0
                     case "Exit":
                         //logic
                         break;
+                    case "Menu":
+                      goto redirect;
                     default:
                         Console.WriteLine("Page does not exist!");
                         Console.WriteLine("Please press Enter to continue");

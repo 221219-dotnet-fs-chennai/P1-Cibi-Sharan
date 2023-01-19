@@ -32,6 +32,7 @@ namespace Project0
                     Console.WriteLine("Please input a valid response");
                     Console.WriteLine("Please press Enter to continue");
                     Console.ReadLine();
+                    Console.Clear();
                     return "Menu";
             }
         }
