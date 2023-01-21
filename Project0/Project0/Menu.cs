@@ -46,6 +46,15 @@ namespace Project0
             Console.WriteLine("Enter '5' : To Go Back");
         }
 
+        public void displayAddTables()
+        {
+            Console.WriteLine("Enter '1' : To add Details Table");
+            Console.WriteLine("Enter '2' : To add Skills Table");
+            Console.WriteLine("Enter '3' : To add Experience Table");
+            Console.WriteLine("Enter '4' : To add Education Table");
+            Console.WriteLine("Enter '5' : To Go Back");
+        }
+
         public string userChoice() {
             string userInput = Console.ReadLine();
             switch (userInput)
@@ -65,5 +74,7 @@ namespace Project0
                     return "Menu";
             }
         }
+
+        
     }
 }
