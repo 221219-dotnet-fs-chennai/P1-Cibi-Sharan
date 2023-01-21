@@ -103,6 +103,7 @@ namespace Project0
             Console.WriteLine("Enter '4' : To update Percentage");
             Console.WriteLine("Enter '5' : To update Start Year");
             Console.WriteLine("Enter '6' : To update End Year");
+            Console.WriteLine("Enter '7' : To update Register Number");
             Console.WriteLine("Enter 'B' : To Go Back");
             string useropt = Console.ReadLine();
             switch (useropt)
@@ -119,8 +120,11 @@ namespace Project0
                     return "Start Year";
                 case "6":
                     return "End Year";
+                case "7":
+                    return "Register Number";
                 case "B":
                     return "Go Back";
+
                 default:
                     return "Menu";
 
@@ -174,7 +178,7 @@ namespace Project0
                 {
                     command = $"update [Education] set {column_name} = {op1} where UserID = '{userid}'";
                 }
-                else { command = $"update [Eduction] set {column_name} = '{value}' where UserID = '{userid}'"; }
+                else { command = $"update [Education] set {column_name} = '{value}' where UserID = '{userid}'"; }
 
                 Console.WriteLine("id : " + userid);
 
@@ -183,6 +187,17 @@ namespace Project0
                 Console.WriteLine("Updated Education Table");
                 Console.WriteLine(rows + "row(s) affected");
             }
+        }
+        public void DisplayEducationProfile(Education ed)
+        {
+            Console.WriteLine("\n *****Education*****");
+            Console.WriteLine("Register Number : " + ed.REGISTER_NO);
+            Console.WriteLine("College Name : " + ed.COLLEGE_NAME);
+            Console.WriteLine("Stream : " + ed.STREAM);
+            Console.WriteLine("Branch : " + ed.BRANCH);
+            Console.WriteLine("Percentage : "+ed.PERCENTAGE);
+            Console.WriteLine("Start Year : "+ed.START_YEAR);
+            Console.WriteLine("End Year : "+ed.END_YEAR);
         }
     }
 }

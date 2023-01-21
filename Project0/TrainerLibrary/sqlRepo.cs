@@ -67,5 +67,7 @@ namespace TrainerLibrary
             Console.WriteLine(rows + "row(s) added");
 
         }
+
+        
     }
 }

@@ -158,7 +158,7 @@ namespace Project0
             }
         }
 
-        public Details GetDetailsRows(string email)
+        public Details GetDetailsRows(int id)
         {
             Details table = new Details();
 
@@ -166,7 +166,7 @@ namespace Project0
             {
                 conn.Open();
 
-                string command = $"SELECT * from [Details] where Email_ID = '{email}'";
+                string command = $"SELECT * from [Details] where UserID = '{id}'";
                 using SqlCommand sqlCommand = new SqlCommand(command, conn);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
@@ -190,6 +190,18 @@ namespace Project0
             //Console.WriteLine(table[0].Name);
 
             return table;
+        }
+        public void DisplayDetailsProfile(Details dv)
+        {
+            Console.WriteLine("****PROFILE****");
+            Console.WriteLine("****PERSONAL INFORMATION*****");
+            Console.WriteLine("ID : " + dv.UserID);
+            Console.WriteLine("FullName : " + dv.FullName);
+            Console.WriteLine("Email ID : " + dv.Email);
+            Console.WriteLine("Phone Number : " + dv.PhoneNo);
+            Console.WriteLine("Address : " + dv.Address);
+            Console.WriteLine("About Me : " + dv.AboutMe);
+            Console.WriteLine("Website : "+dv.Website);
         }
 
         //public void DisplayMenu()

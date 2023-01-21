@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.ComponentModel.Design;
 using TrainerLibrary;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace Project0
 {
@@ -64,6 +66,20 @@ namespace Project0
                                             break;
                                         case "View Details":
                                             //logic
+                                            SqlRepo sqlrepo1 = new SqlRepo();
+                                            int id = sqlrepo1.CheckId(table.Email);
+                                            DetailsFunctions detailsview = new DetailsFunctions();
+                                            Details dv = detailsview.GetDetailsRows(id);
+                                            detailsview.DisplayDetailsProfile(dv);
+                                            SkillsFunction skillsview = new SkillsFunction();
+                                            Skills sv = skillsview.GetSkillsRows(id);
+                                            skillsview.DisplaySkillsProfile(sv);
+                                            ExperienceFunction expview = new ExperienceFunction();
+                                            Experience exv = expview.GetExperienceRows(id);
+                                            expview.DisplayExperienceProfile(exv);
+                                            EducationFunction eduview = new EducationFunction();
+                                            Education edv = eduview.GetEducationRows(id);
+                                            eduview.DisplayEducationProfile(edv);
                                             break;
                                         case "Update Details":
                                         //logic
@@ -81,10 +97,11 @@ namespace Project0
                                                     //logic
                                                     //print rows of Details Table
                                                     DetailsFunctions detailsobj = new DetailsFunctions();
+                                                    id = sqlrepo.CheckId(table.Email);
 
-                                                    Details d = detailsobj.GetDetailsRows(table.Email);
+                                                    Details d = detailsobj.GetDetailsRows(id);
                                                     
-                                                    int id = sqlrepo.CheckId(table.Email);
+                                                    
                                                     //Console.WriteLine("Sample Name : {0}",detailobj1.FullName);
                                                     string detailsopt = detailsobj.DetailsPrint(d);
                                                     switch (detailsopt)
@@ -245,6 +262,7 @@ namespace Project0
                                                     break;
                                                 case "Education":
                                                     //logic
+                                                    repeat = true;
                                                     while (repeat)
                                                     {
                                                         //logic
@@ -258,9 +276,17 @@ namespace Project0
                                                         string eduopt = eduobj.EduPrint();
                                                         switch (eduopt)
                                                         {
+                                                            case "Register Number":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Register Number: ");
+                                                                string reg_no = Console.ReadLine();
+                                                                string store_col7 = "Register_No";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                eduobj.UpdateEducation(store_col7, reg_no, id);
+                                                                break;
                                                             case "College Name":
                                                                 //logic 
-                                                                Console.WriteLine("Enter your new Company 1: ");
+                                                                Console.WriteLine("Enter your College Name: ");
                                                                 string college = Console.ReadLine();
                                                                 string store_col1 = "College_Name";
                                                                 //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
@@ -272,7 +298,7 @@ namespace Project0
 
                                                             case "Stream":
                                                                 //logic
-                                                                Console.WriteLine("Enter your new Company 2: ");
+                                                                Console.WriteLine("Enter your Stream: ");
                                                                 string stream = Console.ReadLine();
                                                                 string store_col2 = "Stream";
                                                                 //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
@@ -281,7 +307,7 @@ namespace Project0
                                                                 break;
                                                             case "Branch":
                                                                 //logic
-                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                Console.WriteLine("Enter your Branch: ");
                                                                 string branch = Console.ReadLine();
                                                                 string store_col3 = "Branch";
                                                                 //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
@@ -289,25 +315,25 @@ namespace Project0
                                                                 break;
                                                             case "Percentage":
                                                                 //logic
-                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                Console.WriteLine("Enter your Percentage: ");
                                                                 string perc = Console.ReadLine();
-                                                                string store_col4 = "Branch";
+                                                                string store_col4 = "Percentage";
                                                                 //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
                                                                 eduobj.UpdateEducation(store_col4, perc, id);
                                                                 break;
                                                             case "Start Year":
                                                                 //logic
-                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                Console.WriteLine("Enter your Start Year: ");
                                                                 string sy = Console.ReadLine();
-                                                                string store_col5 = "Branch";
+                                                                string store_col5 = "StartYear";
                                                                 //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
                                                                 eduobj.UpdateEducation(store_col5, sy, id);
                                                                 break;
                                                             case "End Year":
                                                                 //logic
-                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                Console.WriteLine("Enter your End Year: ");
                                                                 string ey = Console.ReadLine();
-                                                                string store_col6 = "Branch";
+                                                                string store_col6 = "EndYear";
                                                                 //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
                                                                 eduobj.UpdateEducation(store_col6, ey, id);
                                                                 break;
@@ -327,7 +353,7 @@ namespace Project0
                                                         }
                                                     }
                                                     break;
-                                                    break;
+                                                    //break;
                                                 case "Menu":
                                                     goto updateMenu;
                                                 case "Go Back":

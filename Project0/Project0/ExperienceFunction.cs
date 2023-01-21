@@ -156,5 +156,12 @@ namespace Project0
                 Console.WriteLine(rows + "row(s) affected");
             }
         }
+        public void DisplayExperienceProfile(Experience exp)
+        {
+            Console.WriteLine("\n *****Experience*****");
+            Console.WriteLine("Company 1 : " + exp.COMPANY1);
+            Console.WriteLine("Company 2 : " + exp.COMPANY2);
+            Console.WriteLine("Company 3 : " + exp.COMPANY3);
+        }
     }
 }

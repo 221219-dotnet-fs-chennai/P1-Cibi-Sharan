@@ -156,5 +156,12 @@ namespace Project0
             Console.WriteLine(rows + "row(s) added");
             Console.WriteLine("Skills successfully added..");
         }
+        public void DisplaySkillsProfile(Skills skills)
+        {
+            Console.WriteLine("\n *****Skills*****");
+            Console.WriteLine("Skill 1 : "+skills.SKILL_1);
+            Console.WriteLine("Skill 2 : "+skills.SKILL_2);
+            Console.WriteLine("Skill 3 : "+skills.SKILL_3);
+        }
     }
 }
