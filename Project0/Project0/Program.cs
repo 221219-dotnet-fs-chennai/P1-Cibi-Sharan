@@ -80,7 +80,13 @@ namespace Project0
                                             EducationFunction eduview = new EducationFunction();
                                             Education edv = eduview.GetEducationRows(id);
                                             eduview.DisplayEducationProfile(edv);
-                                            break;
+
+                                            // go back
+                                            Console.WriteLine("\n\nPress Enter to go back");
+                                            Console.ReadLine();
+                                            Console.Clear();
+                                            goto redirected;
+                                            //break;
                                         case "Update Details":
                                         //logic
                                         UpdateFunc:
@@ -138,6 +144,10 @@ namespace Project0
                                                             //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
                                                             detailsobj.UpdateDetails(store_col4, website, id);
                                                             break;
+                                                        case "Go Back":
+                                                            //logic
+                                                            goto updateMenu;
+                                                            //break;
                                                     }
                                                     //Console.WriteLine(detailsopt);
                                                     //string detailsopt = detailobj1.DetailsPrint();
@@ -365,8 +375,18 @@ namespace Project0
                                             break;
                                             //break;
                                         case "Delete Details":
-                                            
-
+                                            Console.WriteLine("Are you sure you want to delete the details? [Y] or [N]");
+                                            char ip = Convert.ToChar(Console.ReadLine());
+                                            if (ip == 'Y')
+                                            {
+                                                SqlRepo sqldel = new SqlRepo();
+                                                id = sqldel.CheckId(table.Email);
+                                                sqldel.DelDetails(id);
+                                            }
+                                            else
+                                            {
+                                                goto redirect;
+                                            }
                                             //logic
                                             break;
                                         case "Menu":
@@ -428,6 +448,7 @@ namespace Project0
                                     // SqlRepo sqlrepo = new SqlRepo();
                                     // To Add Details Table
                                     SqlRepo sqlrepo_obj = new SqlRepo();
+                                    //exception handling for email 
                                     try
                                     {
                                         
@@ -571,10 +592,29 @@ namespace Project0
                         break;
                     
                     
-                    case "Find Trainers":
-                        // logic 
-
-                        break;
+                    case "Display Trainers":
+                    // logic 
+                    SqlRepo repo = new SqlRepo();
+                    List<Details> detailList = new List<Details>();
+                    detailList = repo.GetDetails1();
+                    //List<Skills> skillList = new List<Skills>();
+                    //skillList = repo.GetSkills();
+                    //List<Experience> expList = new List<Experience>();
+                    //expList = repo.GetExperience();
+                    //int i = 1;
+                    Console.WriteLine("****PROFILE****");
+                    detailList.ForEach(d =>
+                    {
+                        
+                        Console.Write(" {0} {1} {2} {3} ", d.FullName, d.Email, d.PhoneNo, d.Website);
+                        Console.WriteLine("\n");
+                    });
+                    Console.WriteLine("Press Enter to Go Back");
+                    Console.ReadLine();
+                    Console.Clear();
+                    goto startpage;
+                    //Console.WriteLine("Name : "+detailList.ful);
+                        //break;
                     case "Exit":
                         //logic
                         break;
@@ -584,7 +624,8 @@ namespace Project0
                         Console.WriteLine("Page does not exist!");
                         Console.WriteLine("Please press Enter to continue");
                         Console.ReadLine();
-                        break;
+                    goto startpage;
+                      //  break;
                 }
             }
         }

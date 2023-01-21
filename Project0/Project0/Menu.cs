@@ -13,7 +13,7 @@ namespace Project0
             Console.WriteLine("Find Your Trainer..");
             Console.WriteLine("Enter '0' : Exit");
             Console.WriteLine("Enter '1' : Register as a Trainer");
-            Console.WriteLine("Enter '2' : Find Trainers");
+            Console.WriteLine("Enter '2' : Display Trainers");
         }
         public string UserChoice()
         {
@@ -27,7 +27,7 @@ namespace Project0
                 case "1":
                     return "Register as Trainer"; 
                 case "2":
-                    return "Find Trainers";
+                    return "Display Trainers";
                 default:
                     Console.WriteLine("Please input a valid response");
                     Console.WriteLine("Please press Enter to continue");

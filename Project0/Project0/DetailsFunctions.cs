@@ -113,6 +113,7 @@ namespace Project0
             Console.WriteLine("Enter '2' : To update About Me");
             Console.WriteLine("Enter '3' : To update Phone Number");
             Console.WriteLine("Enter '4' : To update Website");
+            Console.WriteLine("Enter '5' : To Go Back");
 
             string useropt = Console.ReadLine();
             switch(useropt)
@@ -125,6 +126,8 @@ namespace Project0
                     return "Phone Number";
                 case "4":
                     return "Website";
+                case "5":
+                    return "Go Back";
                 default:
                     return "Menu";
 
