@@ -25,7 +25,92 @@ namespace Project0
             skillsobj.SKILL_3 = Console.ReadLine();
             Console.WriteLine("Add About Me : ");
         }
+        public string SkillsPrint()
+        {
+            //Console.Write("UserID : "+detailsobj.UserID);
+            //Console.Write("\tFullName : " + detailsobj.FullName);
+            //Console.Write("\tGender : " + detailsobj.Gender);
+            //Console.Write("\tAddress : "+detailsobj.Address);
+            //Console.Write("\tAbout Me : " + detailsobj.AboutMe);
+            //Console.Write("\tPhone Number : " + detailsobj.PhoneNo);
+            //Console.Write("\tEmail : " + detailsobj.Email);
+            //Console.WriteLine("\tWebsite : "+detailsobj.Website);
 
+            Console.WriteLine("Enter '1' : To update Skill 1");
+            Console.WriteLine("Enter '2' : To update Skill 2");
+            Console.WriteLine("Enter '3' : To update Skill 3");
+            Console.WriteLine("Enter '4' : To Go Back");
+            string useropt = Console.ReadLine();
+            switch (useropt)
+            {
+                case "1":
+                    return "Skill 1";
+                case "2":
+                    return "Skill 2";
+                case "3":
+                    return "Skill 3";
+                case "4":
+                    return "Go Back";
+                default:
+                    return "Menu";
+
+            }
+        }
+        public void UpdateSkills(string column_name, string value, int userid)
+        {
+            // Details table = new Details();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                string command;
+                conn.Open();
+                if (Int32.TryParse(value, out int op))
+                {
+                    //Console.WriteLine(op);
+                    command = $"update [Skills] set {column_name} = {op} where UserID = '{userid}'";
+                }
+                else if (Int64.TryParse(value, out long op1))
+                {
+                    command = $"update [Skills] set {column_name} = {op1} where UserID = '{userid}'";
+                }
+                else { command = $"update [Skills] set {column_name} = '{value}' where UserID = '{userid}'"; }
+
+                Console.WriteLine("id : " + userid);
+
+                using SqlCommand sqlCommand = new SqlCommand(command, conn);
+                int rows = sqlCommand.ExecuteNonQuery();
+                Console.WriteLine("Updated Skills Table");
+                Console.WriteLine(rows + "row(s) affected");
+            }
+        }
+        public Skills GetSkillsRows(int userid)
+        {
+            Skills table = new Skills();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+
+                string command = $"SELECT * from [Skills] where UserID = '{userid}'";
+                using SqlCommand sqlCommand = new SqlCommand(command, conn);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    table.USERID = reader.GetInt32(0);
+                    table.SKILL_1 = reader.GetString(1);
+                    table.SKILL_2 = reader.GetString(2);
+                    table.SKILL_3 = reader.GetString(3);
+                }
+            }
+            //table.ForEach(t =>
+            //{
+            //    Console.WriteLine($"Values : {t.Id}");
+            //});
+            //Console.WriteLine(table[0].Name);
+
+            return table;
+        }
         public Skills display1(Skills skillsobj)
         {
             // enter details

@@ -13,7 +13,7 @@ namespace Project0
     {
         static void Main(string[] args)
         {
-           
+           startpage:
             IMenu menu = new Menu();
             Menu menu1 = new Menu();
             
@@ -58,6 +58,9 @@ namespace Project0
                                     {
                                         case "Exit":
                                             //logic
+                                            Console.WriteLine("Thank you! Visit Again");
+                                            Console.WriteLine("Press CTRL+C to exit");
+                                            Console.ReadLine();
                                             break;
                                         case "View Details":
                                             //logic
@@ -68,6 +71,7 @@ namespace Project0
                                             //logic
                                             //menu = new Menu();
                                             Console.WriteLine("Helloo");
+                                            SqlRepo sqlrepo = new SqlRepo();
                                         updateMenu:
                                             menu1.displayTables();
                                             string opt = menu1.userChoice();
@@ -79,7 +83,7 @@ namespace Project0
                                                     DetailsFunctions detailsobj = new DetailsFunctions();
 
                                                     Details d = detailsobj.GetDetailsRows(table.Email);
-                                                    SqlRepo sqlrepo = new SqlRepo();
+                                                    
                                                     int id = sqlrepo.CheckId(table.Email);
                                                     //Console.WriteLine("Sample Name : {0}",detailobj1.FullName);
                                                     string detailsopt = detailsobj.DetailsPrint(d);
@@ -122,16 +126,214 @@ namespace Project0
                                                     //string detailsopt = detailobj1.DetailsPrint();
                                                     break;
                                                 case "Skills":
+                                                    repeat = true;
+                                                    while (repeat) { 
                                                     //logic
+                                                    SkillsFunction skillsobj = new SkillsFunction();
+
+                                                    //Skills s = skillsobj.GetSkillsRows(table.Id);
+                                                   // SqlRepo sqlrepo = new SqlRepo();
+                                                    id = sqlrepo.CheckId(table.Email);
+                                                    Skills s = skillsobj.GetSkillsRows(id);
+                                                    //Console.WriteLine("Sample Name : {0}",detailobj1.FullName);
+                                                    string skillsopt = skillsobj.SkillsPrint();
+                                                        switch (skillsopt)
+                                                        {
+                                                            case "Skill 1":
+                                                                //logic 
+                                                                Console.WriteLine("Enter your new Skill 1: ");
+                                                                string skill1 = Console.ReadLine();
+                                                                string store_col1 = "Skill_1";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                skillsobj.UpdateSkills(store_col1, skill1, id);
+                                                                repeat = false;
+                                                                //skillsopt = skillsobj.SkillsPrint();
+                                                                
+                                                                break;
+
+                                                            case "Skill 2":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Skill 2: ");
+                                                                string skill2 = Console.ReadLine();
+                                                                string store_col2 = "Skill_1";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                skillsobj.UpdateSkills(store_col2, skill2, id);
+
+                                                                break;
+                                                            case "Skill 3":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Skill 3: ");
+                                                                string skill3 = Console.ReadLine();
+                                                                string store_col3 = "Skill_1";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                skillsobj.UpdateSkills(store_col3, skill3, id);
+                                                                break;
+                                                            case "Go Back":
+                                                                //logic
+                                                                goto updateMenu;
+                                                                //break;
+                                                            default:
+                                                                //logic 
+                                                                Console.WriteLine("Enter a valid response..");
+                                                                Console.WriteLine("Press Enter to continue");
+                                                                Console.ReadLine();
+                                                               // repeat = false;
+                                                                // skillsopt = skillsobj.SkillsPrint();
+                                                                break;
+                                                        }
+                                                    }
                                                     break;
                                                 case "Experience":
                                                     //logic
+                                                    repeat = true;
+                                                    while (repeat)
+                                                    {
+                                                        //logic
+                                                        ExperienceFunction expobj = new ExperienceFunction();
+
+                                                        //Skills s = skillsobj.GetSkillsRows(table.Id);
+                                                        // SqlRepo sqlrepo = new SqlRepo();
+                                                        id = sqlrepo.CheckId(table.Email);
+                                                        Experience e = expobj.GetExperienceRows(id);
+                                                        //Console.WriteLine("Sample Name : {0}",detailobj1.FullName);
+                                                        string expopt = expobj.ExpPrint();
+                                                        switch (expopt)
+                                                        {
+                                                            case "Experience 1":
+                                                                //logic 
+                                                                Console.WriteLine("Enter your new Company 1: ");
+                                                                string comp1 = Console.ReadLine();
+                                                                string store_col1 = "Company1";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                expobj.UpdateExperience(store_col1, comp1, id);
+                                                                //repeat = false;
+                                                                //skillsopt = skillsobj.SkillsPrint();
+
+                                                                break;
+
+                                                            case "Experience 2":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Company 2: ");
+                                                                string comp2 = Console.ReadLine();
+                                                                string store_col2 = "Company2";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                expobj.UpdateExperience(store_col2, comp2, id);
+
+                                                                break;
+                                                            case "Experience 3":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                string comp3 = Console.ReadLine();
+                                                                string store_col3 = "Company3";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                expobj.UpdateExperience(store_col3, comp3, id);
+                                                                break;
+                                                            case "Go Back":
+                                                                //logic
+                                                                goto updateMenu;
+                                                            //break;
+                                                            default:
+                                                                //logic 
+                                                                Console.WriteLine("Enter a valid response..");
+                                                                Console.WriteLine("Press Enter to continue");
+                                                                Console.ReadLine();
+                                                                 repeat = false;
+                                                                // skillsopt = skillsobj.SkillsPrint();
+                                                                break;
+                                                        }
+                                                    }
                                                     break;
                                                 case "Education":
                                                     //logic
+                                                    while (repeat)
+                                                    {
+                                                        //logic
+                                                        EducationFunction eduobj = new EducationFunction();
+
+                                                        //Skills s = skillsobj.GetSkillsRows(table.Id);
+                                                        // SqlRepo sqlrepo = new SqlRepo();
+                                                        id = sqlrepo.CheckId(table.Email);
+                                                        Education e = eduobj.GetEducationRows(id);
+                                                        //Console.WriteLine("Sample Name : {0}",detailobj1.FullName);
+                                                        string eduopt = eduobj.EduPrint();
+                                                        switch (eduopt)
+                                                        {
+                                                            case "College Name":
+                                                                //logic 
+                                                                Console.WriteLine("Enter your new Company 1: ");
+                                                                string college = Console.ReadLine();
+                                                                string store_col1 = "College_Name";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                eduobj.UpdateEducation(store_col1, college, id);
+                                                                //repeat = false;
+                                                                //skillsopt = skillsobj.SkillsPrint();
+
+                                                                break;
+
+                                                            case "Stream":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Company 2: ");
+                                                                string stream = Console.ReadLine();
+                                                                string store_col2 = "Stream";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                eduobj.UpdateEducation(store_col2, stream, id);
+
+                                                                break;
+                                                            case "Branch":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                string branch = Console.ReadLine();
+                                                                string store_col3 = "Branch";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                eduobj.UpdateEducation(store_col3, branch, id);
+                                                                break;
+                                                            case "Percentage":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                string perc = Console.ReadLine();
+                                                                string store_col4 = "Branch";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                eduobj.UpdateEducation(store_col4, perc, id);
+                                                                break;
+                                                            case "Start Year":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                string sy = Console.ReadLine();
+                                                                string store_col5 = "Branch";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                eduobj.UpdateEducation(store_col5, sy, id);
+                                                                break;
+                                                            case "End Year":
+                                                                //logic
+                                                                Console.WriteLine("Enter your new Company 3: ");
+                                                                string ey = Console.ReadLine();
+                                                                string store_col6 = "Branch";
+                                                                //Console.WriteLine(d.Email + "\n" + addr + "\n" + table.Email);
+                                                                eduobj.UpdateEducation(store_col6, ey, id);
+                                                                break;
+
+                                                            case "Go Back":
+                                                                //logic
+                                                                goto updateMenu;
+                                                            //break;
+                                                            default:
+                                                                //logic 
+                                                                Console.WriteLine("Enter a valid response..");
+                                                                Console.WriteLine("Press Enter to continue");
+                                                                Console.ReadLine();
+                                                                repeat = false;
+                                                                // skillsopt = skillsobj.SkillsPrint();
+                                                                break;
+                                                        }
+                                                    }
+                                                    break;
                                                     break;
                                                 case "Menu":
                                                     goto updateMenu;
+                                                case "Go Back":
+                                                    //logic
+                                                    goto redirected;
+                                                   // break;
                                             }
 
                                             break;
@@ -333,9 +535,13 @@ namespace Project0
                             //    //logic
                             //    break;
 
-                            case "Exit":
+                            case "Go Back":
                                 //logic
-                                break;
+                                //Console.WriteLine("Thank you! Press Ctrl+C to exit the program");
+                                //Console.ReadLine();
+                                 goto startpage;
+                                //repeat = true;
+                                //break;
 
                             default:
                                 Console.WriteLine("Please input a valid response");
@@ -363,7 +569,7 @@ namespace Project0
                         //logic
                         break;
                     case "Menu":
-                      goto redirect;
+                      //goto redirect;
                     default:
                         Console.WriteLine("Page does not exist!");
                         Console.WriteLine("Please press Enter to continue");

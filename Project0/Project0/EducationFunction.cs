@@ -86,5 +86,103 @@ namespace Project0
             Console.WriteLine(rows + "row(s) added");
             Console.WriteLine("Education details successfully added..");
         }
+        public string EduPrint()
+        {
+            //Console.Write("UserID : "+detailsobj.UserID);
+            //Console.Write("\tFullName : " + detailsobj.FullName);
+            //Console.Write("\tGender : " + detailsobj.Gender);
+            //Console.Write("\tAddress : "+detailsobj.Address);
+            //Console.Write("\tAbout Me : " + detailsobj.AboutMe);
+            //Console.Write("\tPhone Number : " + detailsobj.PhoneNo);
+            //Console.Write("\tEmail : " + detailsobj.Email);
+            //Console.WriteLine("\tWebsite : "+detailsobj.Website);
+
+            Console.WriteLine("Enter '1' : To update College Name");
+            Console.WriteLine("Enter '2' : To update Stream");
+            Console.WriteLine("Enter '3' : To update Branch");
+            Console.WriteLine("Enter '4' : To update Percentage");
+            Console.WriteLine("Enter '5' : To update Start Year");
+            Console.WriteLine("Enter '6' : To update End Year");
+            Console.WriteLine("Enter 'B' : To Go Back");
+            string useropt = Console.ReadLine();
+            switch (useropt)
+            {
+                case "1":
+                    return "College Name";
+                case "2":
+                    return "Stream";
+                case "3":
+                    return "Branch";
+                case "4":
+                    return "Percentage";
+                case "5":
+                    return "Start Year";
+                case "6":
+                    return "End Year";
+                case "B":
+                    return "Go Back";
+                default:
+                    return "Menu";
+
+            }
+        }
+        public Education GetEducationRows(int userid)
+        {
+            Education table = new Education();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+
+                string command = $"SELECT * from [Education] where UserID = '{userid}'";
+                using SqlCommand sqlCommand = new SqlCommand(command, conn);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    table.USERID = reader.GetInt32(0);
+                    table.COLLEGE_NAME = reader.GetString(1);
+                    table.STREAM = reader.GetString(2);
+                    table.BRANCH = reader.GetString(3);
+                    table.PERCENTAGE = reader.GetInt64(4);
+                    table.START_YEAR = reader.GetInt32(5);
+                    table.END_YEAR = reader.GetInt32(6);
+                }
+            }
+            //table.ForEach(t =>
+            //{
+            //    Console.WriteLine($"Values : {t.Id}");
+            //});
+            //Console.WriteLine(table[0].Name);
+
+            return table;
+        }
+        public void UpdateEducation(string column_name, string value, int userid)
+        {
+            // Details table = new Details();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                string command;
+                conn.Open();
+                if (Int32.TryParse(value, out int op))
+                {
+                    //Console.WriteLine(op);
+                    command = $"update [Education] set {column_name} = {op} where UserID = '{userid}'";
+                }
+                else if (Int64.TryParse(value, out long op1))
+                {
+                    command = $"update [Education] set {column_name} = {op1} where UserID = '{userid}'";
+                }
+                else { command = $"update [Eduction] set {column_name} = '{value}' where UserID = '{userid}'"; }
+
+                Console.WriteLine("id : " + userid);
+
+                using SqlCommand sqlCommand = new SqlCommand(command, conn);
+                int rows = sqlCommand.ExecuteNonQuery();
+                Console.WriteLine("Updated Education Table");
+                Console.WriteLine(rows + "row(s) affected");
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Project0
             Console.WriteLine("Enter '1' : Login");
             Console.WriteLine("Enter '2' : SignUp");
             //Console.WriteLine("Enter '3' : ListAllTrainers");
-            Console.WriteLine("Enter '0' : Exit");
+            Console.WriteLine("Enter '0' : Go Back");
         }
 
         public string UserChoice()
@@ -27,10 +27,10 @@ namespace Project0
                     return "Login";
                 case "2":
                     return "SignUp";
-                case "3":
-                    return "ListAllTrainers";
+                //case "3":
+                //    return "ListAllTrainers";
                 case "0":
-                    return "Exit";
+                    return "Go Back";
                 default:
                     Console.WriteLine("Please input a valid response");
                     Console.WriteLine("Please press Enter to continue");

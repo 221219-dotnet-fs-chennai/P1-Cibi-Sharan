@@ -69,5 +69,92 @@ namespace Project0
             Console.WriteLine(rows + "row(s) added");
             Console.WriteLine("Experience details successfully added..");
         }
+        public string ExpPrint()
+        {
+            //Console.Write("UserID : "+detailsobj.UserID);
+            //Console.Write("\tFullName : " + detailsobj.FullName);
+            //Console.Write("\tGender : " + detailsobj.Gender);
+            //Console.Write("\tAddress : "+detailsobj.Address);
+            //Console.Write("\tAbout Me : " + detailsobj.AboutMe);
+            //Console.Write("\tPhone Number : " + detailsobj.PhoneNo);
+            //Console.Write("\tEmail : " + detailsobj.Email);
+            //Console.WriteLine("\tWebsite : "+detailsobj.Website);
+
+            Console.WriteLine("Enter '1' : To update Company 1");
+            Console.WriteLine("Enter '2' : To update Company 2");
+            Console.WriteLine("Enter '3' : To update Company 3");
+            Console.WriteLine("Enter '4' : To Go Back");
+            string useropt = Console.ReadLine();
+            switch (useropt)
+            {
+                case "1":
+                    return "Experience 1";
+                case "2":
+                    return "Experience 2";
+                case "3":
+                    return "Experience 3";
+                case "4":
+                    return "Go Back";
+                default:
+                    return "Menu";
+
+            }
+        }
+
+        public Experience GetExperienceRows(int userid)
+        {
+            Experience table = new Experience();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                conn.Open();
+
+                string command = $"SELECT * from [Experience] where UserID = '{userid}'";
+                using SqlCommand sqlCommand = new SqlCommand(command, conn);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    table.USERID = reader.GetInt32(0);
+                    table.COMPANY1 = reader.GetString(1);
+                    table.COMPANY2 = reader.GetString(2);
+                    table.COMPANY3 = reader.GetString(3);
+                }
+            }
+            //table.ForEach(t =>
+            //{
+            //    Console.WriteLine($"Values : {t.Id}");
+            //});
+            //Console.WriteLine(table[0].Name);
+
+            return table;
+        }
+        public void UpdateExperience(string column_name, string value, int userid)
+        {
+            // Details table = new Details();
+
+            using (SqlConnection conn = new SqlConnection(connectionstring))
+            {
+                string command;
+                conn.Open();
+                if (Int32.TryParse(value, out int op))
+                {
+                    //Console.WriteLine(op);
+                    command = $"update [Experience] set {column_name} = {op} where UserID = '{userid}'";
+                }
+                else if (Int64.TryParse(value, out long op1))
+                {
+                    command = $"update [Experience] set {column_name} = {op1} where UserID = '{userid}'";
+                }
+                else { command = $"update [Experience] set {column_name} = '{value}' where UserID = '{userid}'"; }
+
+                Console.WriteLine("id : " + userid);
+
+                using SqlCommand sqlCommand = new SqlCommand(command, conn);
+                int rows = sqlCommand.ExecuteNonQuery();
+                Console.WriteLine("Updated Experience Table");
+                Console.WriteLine(rows + "row(s) affected");
+            }
+        }
     }
 }

@@ -43,6 +43,7 @@ namespace Project0
             Console.WriteLine("Enter '2' : To update Skills Table");
             Console.WriteLine("Enter '3' : To update Experience Table");
             Console.WriteLine("Enter '4' : To update Education Table");
+            Console.WriteLine("Enter '5' : To Go Back");
         }
 
         public string userChoice() {
@@ -57,6 +58,8 @@ namespace Project0
                     return "Experience";
                 case "4":
                     return "Education";
+                case "5":
+                    return "Go Back";
                 default:
                     Console.WriteLine("Enter a valid input");
                     return "Menu";
