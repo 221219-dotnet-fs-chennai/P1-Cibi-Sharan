@@ -14,7 +14,8 @@ namespace Project0
     {
         public UserTable EnterDetails() {
             UserTable table = new UserTable();
-            string namepattern = @"\w+";
+            string namepattern = @"[A-Za-z]+";
+            //string namepattern = @"[a - zA - Z] + (([',. -][a-zA-Z ])?[a-zA-Z]*)*";
             //string namepattern = @"\s?Cibi";
             gotoname:                   
             try

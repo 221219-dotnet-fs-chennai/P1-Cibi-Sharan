@@ -1,4 +1,5 @@
-﻿using System;
+﻿global using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,12 @@ namespace Project0
     {
         static void Main(string[] args)
         {
-           startpage:
+            Log.Logger = new LoggerConfiguration()
+                             .WriteTo.File(@"..\..\..\Logs\log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+                             .CreateLogger();
+        Log.Logger.Information("**********************************************************************PROGRAM STARTS***********************************************************************");
+
+        startpage:
             IMenu menu = new Menu();
             Menu menu1 = new Menu();
             
@@ -37,6 +43,7 @@ namespace Project0
                         switch (user_opt1)
                         {
                             case "Login":
+                                Log.Logger.Information("In Login page..");
                                 //logic
                                 Login loginobj = new Login();
                                 SqlRepo sqlobj = new SqlRepo();
@@ -49,7 +56,7 @@ namespace Project0
                                 //string query = "SELECT UserID from UserTable WHERE EmailID = @mail";
                                 if (check1)
                                 {
-                                    
+                                    Log.Logger.Information("Login Successful..");
                                     Console.WriteLine("Welcome {0}", table.Name);
                                     repeat = false;
                                     redirected:
@@ -60,12 +67,14 @@ namespace Project0
                                     {
                                         case "Exit":
                                             //logic
+                                            Log.Logger.Information("User entered exit..");
                                             Console.WriteLine("Thank you! Visit Again");
                                             Console.WriteLine("Press CTRL+C to exit");
                                             Console.ReadLine();
                                             break;
                                         case "View Details":
                                             //logic
+                                            Log.Logger.Information("In View Details");
                                             SqlRepo sqlrepo1 = new SqlRepo();
                                             int id = sqlrepo1.CheckId(table.Email);
                                             DetailsFunctions detailsview = new DetailsFunctions();
@@ -88,7 +97,8 @@ namespace Project0
                                             goto redirected;
                                             //break;
                                         case "Update Details":
-                                        //logic
+                                            //logic\
+                                            Log.Logger.Information("In Update Details..");
                                         UpdateFunc:
                                             //logic
                                             //menu = new Menu();
@@ -102,6 +112,7 @@ namespace Project0
                                                 case "Details":
                                                     //logic
                                                     //print rows of Details Table
+                                                    Log.Logger.Information("In update details table..");
                                                     DetailsFunctions detailsobj = new DetailsFunctions();
                                                     id = sqlrepo.CheckId(table.Email);
 
@@ -113,6 +124,7 @@ namespace Project0
                                                     switch (detailsopt)
                                                     {
                                                         case "Address":
+
                                                             Console.WriteLine("Enter your new Address : ");
                                                             string addr = Console.ReadLine();
                                                             string store_col1 = "Address";
@@ -153,6 +165,7 @@ namespace Project0
                                                     //string detailsopt = detailobj1.DetailsPrint();
                                                     break;
                                                 case "Skills":
+                                                    Log.Logger.Information("In update skills table..");
                                                     repeat = true;
                                                     while (repeat) { 
                                                     //logic
@@ -212,6 +225,7 @@ namespace Project0
                                                     break;
                                                 case "Experience":
                                                     //logic
+                                                    Log.Logger.Information("In update experience..");
                                                     repeat = true;
                                                     while (repeat)
                                                     {
@@ -272,6 +286,7 @@ namespace Project0
                                                     break;
                                                 case "Education":
                                                     //logic
+                                                    Log.Logger.Information("In update education..");
                                                     repeat = true;
                                                     while (repeat)
                                                     {
@@ -375,6 +390,7 @@ namespace Project0
                                             break;
                                             //break;
                                         case "Delete Details":
+                                            Log.Logger.Information("In delete details..");
                                             Console.WriteLine("Are you sure you want to delete the details? [Y] or [N]");
                                             char ip = Convert.ToChar(Console.ReadLine());
                                             if (ip == 'Y')
@@ -398,6 +414,7 @@ namespace Project0
                                 }
                                 else
                                 {
+                                    Log.Logger.Information("Login Incorrect..");
                                     Console.WriteLine("Login incorrect");
                                     Console.WriteLine("Go Signup");
                                     Console.WriteLine("Press Enter to go back : ");
@@ -425,7 +442,7 @@ namespace Project0
                                 break;
 
                             case "SignUp":
-                
+                                Log.Logger.Information("In Signup..");
                                 SignUp signupobj = new SignUp();
                                 SqlRepo signuprepo = new SqlRepo();
                                
@@ -438,6 +455,7 @@ namespace Project0
                                 
                                 if (check)
                                 {
+                                    Log.Logger.Information("Email already exists..");
                                     Console.WriteLine("Email already exists!");
                                     repeat = true;
                                     break;
@@ -445,6 +463,7 @@ namespace Project0
 
                                 }
                                 else {
+
                                     // SqlRepo sqlrepo = new SqlRepo();
                                     // To Add Details Table
                                     SqlRepo sqlrepo_obj = new SqlRepo();
@@ -463,6 +482,7 @@ namespace Project0
                                         break;
                                     }
                                     Details detailobj1 = new Details();
+                                    Log.Logger.Information("New user..");
                                     Console.WriteLine("Hellooo new user"); repeat = false;
                                     Console.WriteLine("Your Email : " + table.Email);
                                    
@@ -482,10 +502,12 @@ namespace Project0
                                         
                                         case "Exit":
                                             //logic
+                                            Log.Logger.Information("User entered exit..");
                                             break;
                                         //case "View Details":
                                         //    break;
                                         case "Add Details":
+                                            Log.Logger.Information("In Add details..");
                                             repeat = true;
                                             while (repeat)
                                             {
@@ -496,10 +518,11 @@ namespace Project0
                                                 switch (useropt)
                                                 {
                                                     case "Details":
+                                                        Log.Logger.Information("Adding details..");
                                                         //List<UserTable> logtb = loginobj.GetDetails(); // all rows from UserTable
                                                         //                                               //Console.WriteLine("hello");
                                                         //bool check1 = loginobj.checkValidation(logtb, table.Email, table.Password);
-                                                        
+
                                                         DetailsFunctions addobj1 = new DetailsFunctions();
                                                         //detailobj1 = addobj1.display1(detailobj1);
                                                         detailobj1 = addobj1.GetEmail(table.Email);
@@ -508,6 +531,7 @@ namespace Project0
                                                         break;
 
                                                     case "Skills":
+                                                        Log.Logger.Information("Adding skills..");
                                                         Console.WriteLine("\n");
                                                         Console.WriteLine("Press Enter to Add Skills Details : ");
                                                         Console.ReadLine(); Console.Clear();
@@ -521,6 +545,7 @@ namespace Project0
                                                         break;
 
                                                     case "Experience":
+                                                        Log.Logger.Information("Adding Experience..");
                                                         Console.WriteLine("\n");
                                                         Console.WriteLine("Press Enter to Add Experience Details : ");
                                                         Console.ReadLine(); Console.Clear();
@@ -532,6 +557,7 @@ namespace Project0
                                                         break;
 
                                                     case "Education":
+                                                        Log.Logger.Information("Adding education..");
                                                         Console.WriteLine("\n");
                                                         Console.WriteLine("Press Enter to Add Education Details : ");
                                                         Console.ReadLine(); Console.Clear();
@@ -543,6 +569,7 @@ namespace Project0
                                                         break;
 
                                                     case "Go Back":
+                                                        Log.Logger.Information("User entered Go Back..");
                                                         //Console.WriteLine("Enter valid input!");
                                                         goto redirect;
 
@@ -567,14 +594,16 @@ namespace Project0
                             //    break;
 
                             case "Go Back":
+                                Log.Logger.Information("User entered go back..");
                                 //logic
                                 //Console.WriteLine("Thank you! Press Ctrl+C to exit the program");
                                 //Console.ReadLine();
-                                 goto startpage;
+                                goto startpage;
                                 //repeat = true;
                                 //break;
 
                             default:
+                                Log.Logger.Information("User entered invalid response..");
                                 Console.WriteLine("Please input a valid response");
                                 Console.WriteLine("Please press Enter to continue");
                                 Console.ReadLine();
@@ -594,6 +623,7 @@ namespace Project0
                     
                     case "Display Trainers":
                     // logic 
+                    Log.Logger.Information("Displaying Trainers..");
                     SqlRepo repo = new SqlRepo();
                     List<Details> detailList = new List<Details>();
                     detailList = repo.GetDetails1();
