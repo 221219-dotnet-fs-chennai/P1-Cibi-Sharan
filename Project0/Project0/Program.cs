@@ -95,7 +95,89 @@ namespace Project0
                                             Console.ReadLine();
                                             Console.Clear();
                                             goto redirected;
-                                            //break;
+                                        //break;
+                                        case "Add Details":
+                                            Log.Logger.Information("In Add details..");
+                                            repeat = true;
+                                            while (repeat)
+                                            {
+                                                //logic
+                                                Menu men = new Menu();
+                                                men.displayAddTables();
+                                                string useropt = men.userChoice();
+                                                SqlRepo signuprepo1 = new SqlRepo();
+                                                switch (useropt)
+                                                {
+
+                                                    case "Details":
+                                                        Log.Logger.Information("Adding details..");
+                                                        Details detailobj1 = new Details();
+
+                                                        //List<UserTable> logtb = loginobj.GetDetails(); // all rows from UserTable
+                                                        //                                               //Console.WriteLine("hello");
+                                                        //bool check1 = loginobj.checkValidation(logtb, table.Email, table.Password);
+
+                                                        DetailsFunctions addobj1 = new DetailsFunctions();
+                                                        //detailobj1 = addobj1.display1(detailobj1);
+                                                        detailobj1 = addobj1.GetEmail(table.Email);
+                                                        int signupID = signuprepo1.CheckId(table.Email);
+                                                        addobj1.AddDetails(detailobj1, signupID);
+                                                        break;
+
+                                                    case "Skills":
+                                                        Log.Logger.Information("Adding skills..");
+                                                        Console.WriteLine("\n");
+                                                        Console.WriteLine("Press Enter to Add Skills Details : ");
+                                                        Console.ReadLine(); Console.Clear();
+                                                        Skills skillobj1 = new Skills();
+
+                                                        SkillsFunction addskill = new SkillsFunction();
+                                                        //addskill.display();
+
+                                                        int skillId = signuprepo1.CheckId(table.Email);
+                                                        addskill.AddDetails(skillobj1, skillId);
+                                                        break;
+
+                                                    case "Experience":
+                                                        Log.Logger.Information("Adding Experience..");
+                                                        Console.WriteLine("\n");
+                                                        Console.WriteLine("Press Enter to Add Experience Details : ");
+                                                        Console.ReadLine(); Console.Clear();
+                                                        Experience expobj1 = new Experience();
+                                                        ExperienceFunction addexp = new ExperienceFunction();
+                                                        //addexp.display();
+                                                        int ExpId = signuprepo1.CheckId(table.Email);
+                                                        addexp.AddDetails(expobj1, ExpId);
+                                                        break;
+
+                                                    case "Education":
+                                                        Log.Logger.Information("Adding education..");
+                                                        Console.WriteLine("\n");
+                                                        Console.WriteLine("Press Enter to Add Education Details : ");
+                                                        Console.ReadLine(); Console.Clear();
+                                                        Education eduobj1 = new Education();
+                                                        EducationFunction addedu = new EducationFunction();
+                                                        //addedu.display();
+                                                        int EduId = signuprepo1.CheckId(table.Email);
+                                                        addedu.AddDetails(eduobj1, EduId);
+                                                        break;
+
+                                                    case "Go Back":
+                                                        Log.Logger.Information("User entered Go Back..");
+                                                        //Console.WriteLine("Enter valid input!");
+                                                        goto redirect;
+
+                                                    default:
+                                                        Console.WriteLine("Page does not exist!");
+                                                        Console.WriteLine("Please press Valid Input!");
+                                                        //goto operationmenu;
+                                                        break;
+
+                                                }
+                                            }
+
+
+                                            break;
                                         case "Update Details":
                                             //logic\
                                             Log.Logger.Information("In Update Details..");
@@ -378,7 +460,9 @@ namespace Project0
                                                         }
                                                     }
                                                     break;
-                                                    //break;
+                                                //break;
+                                               
+
                                                 case "Menu":
                                                     goto updateMenu;
                                                 case "Go Back":

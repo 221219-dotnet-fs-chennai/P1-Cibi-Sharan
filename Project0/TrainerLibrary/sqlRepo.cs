@@ -12,7 +12,7 @@ namespace TrainerLibrary
     
     {
         string connectionstring = "Server = tcp:cibi-db-server1.database.windows.net,1433;Initial Catalog = Project1DB; Persist Security Info=False;User ID = cibi; Password=Cb@75372;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30";
-        //string connectionstring = File.ReadAllText("../../../connectionString.txt");
+       // string connectionstring = File.ReadAllText("C:\\P1-Cibi-Sharan\\Project0\\TrainerLibrary\\connectionString.txt");
         public List<UserTable> GetDetails()
         {
             List<UserTable> table = new List<UserTable>();

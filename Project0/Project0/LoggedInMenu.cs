@@ -15,6 +15,7 @@ namespace Project0
             Console.WriteLine("Enter '1' : View Details");
             Console.WriteLine("Enter '2' : Update Details");
             Console.WriteLine("Enter '3' : Delete Details");
+            Console.WriteLine("Enter '4' : Add Details");
 
             // Console.WriteLine("Enter '2' : Update Details");
             //Console.WriteLine("Enter '3' : Delete Details");
@@ -34,6 +35,8 @@ namespace Project0
                     return "Update Details";
                 case "3":
                     return "Delete Details";
+                case "4":
+                    return "Add Details";
                 default:
                     Console.WriteLine("Please input a valid response");
                     Console.WriteLine("Please press Enter to continue");
