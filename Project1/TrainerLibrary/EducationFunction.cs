@@ -5,11 +5,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainerLibrary;
+//using TrainerLibrary;
 
-namespace Project0
+namespace TrainerLibrary
 {
-    internal class EducationFunction : IMenu, IFileRepo<Education>
+    public class EducationFunction : IFileRepo<Education>
     {
         string connectionstring = "Server = tcp:cibi-db-server1.database.windows.net,1433;Initial Catalog = Project1DB; Persist Security Info=False;User ID = cibi; Password=Cb@75372;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30";
 
