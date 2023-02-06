@@ -31,5 +31,27 @@ namespace Services.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("GetExperienceDetails/{Email}")]
+        public ActionResult GetExperience([FromRoute] string? Email)
+        {
+            try
+            {
+                var trainerexp = _logic.GetExperienceDetails(Email);
+                if (trainerexp != null)
+                {
+                    return Ok(trainerexp);
+                }
+                else
+                    return BadRequest("No trainer Logins found!");
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

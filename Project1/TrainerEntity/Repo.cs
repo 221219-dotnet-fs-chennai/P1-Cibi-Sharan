@@ -74,5 +74,10 @@ namespace TrainerEntity
                 Console.WriteLine(e.StackTrace);
             }
         }
+        public void UpdateDetails(Detail d)
+        {
+            context.Update(d);
+            context.SaveChanges();
+        }
     }
 }

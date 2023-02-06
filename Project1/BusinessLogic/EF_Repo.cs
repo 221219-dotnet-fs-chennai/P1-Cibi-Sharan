@@ -12,7 +12,7 @@ using TrainerET = TrainerEntity.Entities;
 
 namespace BusinessLogic
 {
-    public class EF_Repo : IRepo
+    public class EF_Repo 
     {
         Mapper map = new Mapper();
         Project1DbContext dbobj = new Project1DbContext();
@@ -141,6 +141,24 @@ namespace BusinessLogic
             }
             return map.MapDetail(det);
         }
+        //public TrainerET.UserTable GetUserTable(int id)
+        //{
+        //    var allusers = dbobj.UserTables;
+        //    var user = from ud in allusers
+        //               where ud.UserId == id
+        //               select ud;
+        //    var t = dbobj.UserTables.Where(item => item.UserId == id).First();
+        //    TrainerET.UserTable table = new TrainerET.UserTable();
+        //    foreach (var u in user)
+        //    {
+        //        table = new TrainerET.UserTable()
+        //        {
+        //            UserId = id,
+        //            Name = u.Name,
+        //        };
+        //    }
+        //    return map.mapusertable(table);
+        //}
 
         public Skills GetSkills(int id)
         {
@@ -230,6 +248,21 @@ namespace BusinessLogic
             dbobj.Educations.Add(map.mapeducation(ed));
             dbobj.SaveChanges();
             Console.WriteLine("Data added successfully..");
+        }
+        public void UpdateDetails(Models.Details d, string col)
+        {
+            if (col == "Address")
+            {
+                Console.WriteLine("Enter your new Address : ");
+                string newaddr = Console.ReadLine();
+                map.mapdetail(d);
+                d.Address = newaddr;
+                dbobj.SaveChanges();
+                Console.WriteLine("Updated address..");
+            }
+            
+
+
         }
     }
   }

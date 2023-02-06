@@ -1,4 +1,5 @@
 ﻿using Models;
+using System.Security.Cryptography;
 using TrainerEntity;
 using TE=TrainerEntity.Entities;
 
@@ -6,6 +7,7 @@ namespace BusinessLogic
 {
     public class Logic : ILogic
     {
+        EF_Repo efrepo = new EF_Repo();
         LogicActions action = new LogicActions();
         TE.Project1DbContext context = new TE.Project1DbContext();
         Repo repo = new Repo();
@@ -61,5 +63,82 @@ namespace BusinessLogic
             repo.AddEducation(Map.mapeducation(ed));
             return Map.mapeducation(ed);
         }
+        public TE.Education GetEducationDetails(string? email)
+        {
+            Education ed = new Education();
+            int id = action.GetId(email);
+            ed = efrepo.GetEducation(id);
+            //ed.USERID = id;
+            //details.Email = email;
+            //var entityDetail = Map.mapdetail(details);
+            //repo.GetEducation(Map.mapeducation(ed));
+            return Map.mapeducation(ed);
+        }
+        public TE.Experience GetExperienceDetails(string? email)
+        {
+            Experience exp = new Experience();
+            int id = action.GetId(email);
+            exp = efrepo.GetExperience(id);
+            //ed.USERID = id;
+            //details.Email = email;
+            //var entityDetail = Map.mapdetail(details);
+            //repo.GetEducation(Map.mapeducation(ed));
+            return Map.mapexperience(exp);
+        }
+        //public TE.UserTable GetUserDetails(string? email)
+        //{
+            //UserTable ed = new UserTable();
+            //int id = action.GetId(email);
+            //ed = efrepo.GetUserTable(id);
+            ////ed.USERID = id;
+            ////details.Email = email;
+            ////var entityDetail = Map.mapdetail(details);
+            ////repo.GetEducation(Map.mapeducation(ed));
+            //return Map.mapusertable(ed);
+        //}
+        public void UpdateDetails(string? email, Details d)
+        {
+            try
+            {
+                int id = efrepo.checkID(email);
+                Details detail = efrepo.GetDetails(id);
+                if (detail != null)
+                {
+                    if (d.FullName != "string" && d.FullName != detail.FullName) {
+                        detail.FullName = d.FullName;
+                    }
+                    if (d.Gender != "string" && d.Gender != detail.Gender)
+                    {
+                        detail.Gender = d.Gender;
+                    }
+                    if (d.Address != "string" && d.Address != detail.Address)
+                    {
+                        detail.Address = d.Address;
+                    }
+                    if (d.AboutMe != "string" && d.AboutMe != detail.AboutMe)
+                    {
+                        detail.AboutMe = d.AboutMe;
+                    }
+                    if (d.PhoneNo != "string" && d.PhoneNo != detail.PhoneNo)
+                    {
+                        detail.PhoneNo = d.PhoneNo;
+                    }
+                    if (d.Website != "string" && d.Website != detail.Website)
+                    {
+                        detail.Website = d.Website;
+                    }
+                }
+                repo.UpdateDetails(Map.mapdetail(detail));
+            }
+            catch(Exception ex) { Console.WriteLine(ex.Message); }
+        }
+        //public void DeleteTrainer(string email)
+        //{
+        //    try
+        //    {
+        //        int id = efrepo.checkID(email);
+                
+        //    }
+        //}
     }
 }
