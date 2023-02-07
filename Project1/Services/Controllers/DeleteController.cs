@@ -15,25 +15,25 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
-        //[HttpDelete("DeleteTrainer/{Email}")]
-        //public ActionResult Delete([FromRoute] string? Email)
-        //{
-        //    try
-        //    {
-        //        var trainer = _logic.GetUserDetails(Email);
-        //        if (!string.IsNullOrEmpty(Email))
-        //        {
-        //            _logic.DeleteTrainer(Email);
-        //            return Ok(trainer);
-        //        }
-        //        else
-        //        {
-        //            return BadRequest("Input may be wrong. Please try again..");
-        //        }
-        //    }
-        //    catch (SqlException ex) { return BadRequest(ex.Message); }
-        //    catch (Exception ex) { return BadRequest(ex.Message); }
-        //}
+        [HttpDelete("DeleteTrainer/{Email}")]
+        public ActionResult Delete([FromRoute] string? Email)
+        {
+            try
+            {
+                var trainer = _logic.GetUserDetails(Email);
+                if (!string.IsNullOrEmpty(Email))
+                {
+                    _logic.DeleteTrainer(trainer);
+                    return Ok(trainer);
+                }
+                else
+                {
+                    return BadRequest("Input may be wrong. Please try again..");
+                }
+            }
+            catch (SqlException ex) { return BadRequest(ex.Message); }
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
     }
 }
 //try

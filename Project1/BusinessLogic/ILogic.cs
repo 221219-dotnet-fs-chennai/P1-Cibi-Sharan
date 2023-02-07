@@ -33,9 +33,9 @@ namespace BusinessLogic
         public TE.Education AddEducation(string? Email, Education ed);
         public TE.Education GetEducationDetails(string? Email);
         public TE.Experience GetExperienceDetails(string? Email);
-        //public TE.UserTable GetUserDetails(string? Email);
+        public TE.UserTable GetUserDetails(string? Email);
         public void UpdateDetails(string? Email, Details d);
-        //public void DeleteTrainer(string? Email);
+        public void DeleteTrainer(TE.UserTable t);
 
     }
 }

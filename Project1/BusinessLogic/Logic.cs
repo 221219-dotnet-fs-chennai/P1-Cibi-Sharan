@@ -85,17 +85,15 @@ namespace BusinessLogic
             //repo.GetEducation(Map.mapeducation(ed));
             return Map.mapexperience(exp);
         }
-        //public TE.UserTable GetUserDetails(string? email)
-        //{
-            //UserTable ed = new UserTable();
-            //int id = action.GetId(email);
-            //ed = efrepo.GetUserTable(id);
-            ////ed.USERID = id;
-            ////details.Email = email;
-            ////var entityDetail = Map.mapdetail(details);
-            ////repo.GetEducation(Map.mapeducation(ed));
-            //return Map.mapusertable(ed);
-        //}
+        public TE.UserTable GetUserDetails(string? email)
+        {
+            UserTable ed = new UserTable();
+            int id = action.GetId(email);
+            ed = efrepo.GetUserTable(id);
+            //ed = repo.DeleteUser(ed);
+            //ed = 
+            return Map.mapusertable(ed);
+        }
         public void UpdateDetails(string? email, Details d)
         {
             try
@@ -132,13 +130,14 @@ namespace BusinessLogic
             }
             catch(Exception ex) { Console.WriteLine(ex.Message); }
         }
-        //public void DeleteTrainer(string email)
-        //{
-        //    try
-        //    {
-        //        int id = efrepo.checkID(email);
-                
-        //    }
-        //}
+        public void DeleteTrainer(TE.UserTable t)
+        {
+            try
+            {
+                repo.DeleteUser(t);
+                Console.WriteLine("Deleted user : "+t.Name);
+            }
+            catch(Exception ex) { Console.WriteLine(ex.Message); }
+        }
     }
 }

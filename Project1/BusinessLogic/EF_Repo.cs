@@ -117,6 +117,25 @@ namespace BusinessLogic
             }
             return a;
         }
+        public Models.UserTable GetUserTable(int id)
+        {
+            var users = dbobj.UserTables;
+            var user = from trd in users
+                          where trd.UserId == id
+                          select trd;
+            var t = dbobj.UserTables.Where(item => item.UserId == id).First();
+            TrainerET.UserTable table = new TrainerET.UserTable();
+            foreach (var d in user)
+            {
+                table = new TrainerET.UserTable()
+                {
+                    UserId = id,
+                    Name = d.Name,
+                    EmailId= d.EmailId,
+                };
+            }
+            return map.MapUserTable(table);
+        }
         public Details GetDetails(int id)
         {
             var details = dbobj.Details;
@@ -141,24 +160,7 @@ namespace BusinessLogic
             }
             return map.MapDetail(det);
         }
-        //public TrainerET.UserTable GetUserTable(int id)
-        //{
-        //    var allusers = dbobj.UserTables;
-        //    var user = from ud in allusers
-        //               where ud.UserId == id
-        //               select ud;
-        //    var t = dbobj.UserTables.Where(item => item.UserId == id).First();
-        //    TrainerET.UserTable table = new TrainerET.UserTable();
-        //    foreach (var u in user)
-        //    {
-        //        table = new TrainerET.UserTable()
-        //        {
-        //            UserId = id,
-        //            Name = u.Name,
-        //        };
-        //    }
-        //    return map.mapusertable(table);
-        //}
+        
 
         public Skills GetSkills(int id)
         {

@@ -79,5 +79,11 @@ namespace TrainerEntity
             context.Update(d);
             context.SaveChanges();
         }
+        public UserTable DeleteUser(UserTable t)
+        {
+            context.Remove(t);
+            context.SaveChanges();
+            return t;
+        }
     }
 }
