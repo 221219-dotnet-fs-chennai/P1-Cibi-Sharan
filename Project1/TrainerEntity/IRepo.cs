@@ -9,6 +9,7 @@ namespace TrainerEntity
         public void AddUser(UserTable t);
 
         public IEnumerable<UserTable> GetUsers();
-
+        public void UpdateDetails(Detail d);
+        public void UpdateUser(UserTable t);
     }
 }

@@ -15,8 +15,8 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
-        [HttpPost("AddEducation/{Email}")]
-        public ActionResult Add([FromRoute] string? Email, [FromBody] Education ed)
+        [HttpPost("AddEducation")]
+        public ActionResult Add([FromQuery] string? Email, [FromBody] Education ed)
         {
             try
             {
@@ -33,8 +33,8 @@ namespace Services.Controllers
             }
         }
 
-        [HttpGet("GetEducationDetails/{Email}")]
-        public ActionResult GetEducation([FromRoute] string? Email)
+        [HttpGet("GetEducationDetails")]
+        public ActionResult GetEducation([FromQuery] string? Email)
         {
             try
             {
@@ -56,5 +56,41 @@ namespace Services.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("GetFilteredUsers/{Percentage}")]
+        public ActionResult GetFilteredUsers(double Percentage)
+        {
+            var filteredUsers = _logic.GetFilteredUsers(Percentage);
+            if (filteredUsers != null)
+                return Ok(filteredUsers);
+            else
+                return BadRequest();
+        }
+        [HttpPut("UpdateEducation/{Email}")]
+        public ActionResult UpdateEducation([FromRoute] string? Email, [FromBody] Education ed)
+        {
+            try
+            {
+                _logic.UpdateEducation(Email, ed);
+                return Ok(ed);
+            }
+            catch (SqlException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        //[HttpGet("FilterPercentage/{Percentage}")]
+        //public ActionResult FilterPercentage([FromRoute] double Percentage)
+        //{
+        //    try
+        //    {
+        //        var filteredList = _logic.GetFilteredPercentage(Percentage);
+
+        //    }
+        //}
     }
 }
+

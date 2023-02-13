@@ -53,5 +53,22 @@ namespace Services.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpPut("UpdateExperience/{Email}")]
+        public ActionResult UpdateExperience([FromRoute] string? Email, [FromBody] Experience exp)
+        {
+            try
+            {
+                _logic.UpdateExperience(Email, exp);
+                return Ok(exp);
+            }
+            catch (SqlException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

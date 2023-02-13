@@ -16,6 +16,29 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
+        [HttpGet("GetDetails")]
+        public ActionResult Get([FromQuery] string? Email)
+        {
+            try
+            {
+
+                var traineredu = _logic.GetDetailDetails(Email);
+                if (traineredu != null)
+                {
+                    return Ok(traineredu);
+                }
+                else
+                    return BadRequest("No trainer Logins found!");
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         [HttpPost("Add/{Email}")]
         public ActionResult Add([FromRoute] string? Email, [FromBody] Details? d)
         {

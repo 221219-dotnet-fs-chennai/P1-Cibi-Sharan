@@ -15,6 +15,28 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
+        [HttpGet("GetAllUsers")]
+        public ActionResult Get()
+        {
+            try
+            {
+                var allusers = _logic.GetAllUsers();
+                if (allusers != null) {
+                    return Ok(allusers);
+                }
+                return BadRequest();
+                
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
         [HttpPost("SignUp")] // Trying to create a resource on the server
         public ActionResult Add(UserTable? t)
         {
@@ -28,6 +50,29 @@ namespace Services.Controllers
                 return BadRequest(ex.Message);
             }
             catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpPut("UpdateUserTable/{Email}")]
+        public ActionResult Update([FromRoute]string? Email, [FromBody]UserTable? t)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(Email))
+                {
+                    _logic.UpdateUserTable(Email, t);
+                    return Ok(t);
+                }
+                else
+                    return BadRequest("Email not found!");
+                
+            }
+            catch (SqlException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch(Exception e)
             {
                 return BadRequest(e.Message);
             }

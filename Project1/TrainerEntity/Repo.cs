@@ -79,11 +79,32 @@ namespace TrainerEntity
             context.Update(d);
             context.SaveChanges();
         }
+        public void UpdateUser(UserTable u)
+        { 
+            context.Update(u);
+            context.SaveChanges();
+        }
+        public void UpdateSkills(Skill s)
+        {
+            context.Update(s);
+            context.SaveChanges();
+        }
+        public void UpdateEducation(Education education)
+        {
+            context.Update(education);
+            context.SaveChanges();
+        }
+        public void UpdateExperience(Experience exp)
+        {
+            context.Update(exp);
+            context.SaveChanges();
+        }
         public UserTable DeleteUser(UserTable t)
         {
             context.Remove(t);
             context.SaveChanges();
             return t;
         }
+
     }
 }

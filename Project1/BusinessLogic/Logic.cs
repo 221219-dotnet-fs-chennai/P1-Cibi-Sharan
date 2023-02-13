@@ -1,6 +1,7 @@
 ﻿using Models;
 using System.Security.Cryptography;
 using TrainerEntity;
+//using TrainerEntity.Entities;
 using TE=TrainerEntity.Entities;
 
 namespace BusinessLogic
@@ -74,6 +75,12 @@ namespace BusinessLogic
             //repo.GetEducation(Map.mapeducation(ed));
             return Map.mapeducation(ed);
         }
+        //public TE.Education GetFilteredPercentage(double Percentage)
+        //{
+        //    Models.Education ed = new Models.Education();
+            
+        //    //Education filteredEdu = 
+        //}
         public TE.Experience GetExperienceDetails(string? email)
         {
             Experience exp = new Experience();
@@ -93,6 +100,75 @@ namespace BusinessLogic
             //ed = repo.DeleteUser(ed);
             //ed = 
             return Map.mapusertable(ed);
+        }
+        public List<TE.UserTable> GetAllUsers()
+        {
+            var tb = context.UserTables.ToList();
+            var query = from t in tb
+                        select t;
+            return query.ToList();
+        }
+        public List<TE.Education> GetAllEducation()
+        {
+            var tbedu = context.Educations.ToList();
+            var query = from t in tbedu
+                        select t;
+            return query.ToList();
+        }
+        public List<TE.Education> GetFilteredUsers(double Percentage)
+        {
+            var tb = GetAllEducation();
+            var query = from t in tb
+                        where t.Percentage > Percentage
+                        select t;
+            return query.ToList();
+        }
+        public TE.Detail GetDetailDetails(string? Email)
+        {
+            Details dt = new Details();
+            int id = action.GetId(Email);
+            dt = efrepo.GetDetails(id);
+            return Map.mapdetail(dt);
+        }
+        public TE.Skill GetSkillsDetails(string? email)
+        {
+            Skills skill = new Skills();
+            int id = action.GetId(email);
+            skill= efrepo.GetSkills(id);
+            return Map.mapskill(skill);
+        }
+        //public TE.Skill GetUserSkills(string? email)
+        //{
+        //    Skills skills = new Skills();
+        //    int id = action.GetId(email);
+        //    skills = efrepo.GetUserSkills(id);
+        //    ed = repo.DeleteUser(ed);
+        //    ed =
+        //    return Map.mapskill(skills);
+        //}
+        public void UpdateUserTable(string? email, UserTable t)
+        {
+            try
+            {
+                int id = efrepo.checkID(email);
+                UserTable ut = efrepo.GetUserTable(id);
+                if (ut != null) { 
+                    if (ut.Name != "string" && ut.Name != t.Name)
+                    {
+                        ut.Name = t.Name;
+                    }
+                    if (ut.Password != "string" && ut.Password!= t.Password)
+                    {
+                        ut.Password = t.Password;
+                    }
+                    
+                }
+                repo.UpdateUser(Map.mapusertable(ut));
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         public void UpdateDetails(string? email, Details d)
         {
@@ -130,6 +206,69 @@ namespace BusinessLogic
             }
             catch(Exception ex) { Console.WriteLine(ex.Message); }
         }
+        public void UpdateSkills(string? Email, Skills s)
+        {
+            try
+            {
+                int id = efrepo.checkID(Email);
+                var skill = efrepo.GetSkills(id);
+                if (skill != null)
+                {
+                    if (skill.SKILL_1 != "string" && skill.SKILL_1 != s.SKILL_1)
+                    {
+                        skill.SKILL_1 = s.SKILL_1;
+                    }
+                    if (skill.SKILL_2 != "string" && skill.SKILL_2 != s.SKILL_2)
+                    {
+                        skill.SKILL_2 = s.SKILL_2;
+                    }
+                    if (skill.SKILL_3 != "string" && skill.SKILL_3 != s.SKILL_3)
+                    {
+                        skill.SKILL_3 = s.SKILL_3;
+                    }
+                }
+                repo.UpdateSkills(Map.mapskill(skill));
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
+        public void UpdateEducation(string? Email, Education ed)
+        {
+            try
+            {
+                int id = efrepo.checkID(Email);
+                var edu = efrepo.GetEducation(id);
+                if (edu != null)
+                {
+                    if (edu.COLLEGE_NAME != "string" && edu.COLLEGE_NAME != ed.COLLEGE_NAME)
+                    {
+                       edu.COLLEGE_NAME= ed.COLLEGE_NAME;
+                    }
+                    if (edu.STREAM != "string" && edu.STREAM != ed.STREAM)
+                    {
+                        edu.STREAM = ed.STREAM;
+                    }
+                    if (edu.BRANCH != "string" && edu.BRANCH != ed.BRANCH)
+                    {
+                        edu.BRANCH = ed.BRANCH;
+                    }
+                    if (edu.PERCENTAGE != 0 && edu.PERCENTAGE != ed.PERCENTAGE)
+                    {
+                        edu.PERCENTAGE = ed.PERCENTAGE;
+                    }
+                    if (edu.START_YEAR != 0 && edu.START_YEAR != ed.START_YEAR)
+                    {
+                        edu.START_YEAR = ed.START_YEAR;
+                    }
+                    if (edu.END_YEAR != 0 && edu.END_YEAR != ed.END_YEAR)
+                    {
+                        edu.END_YEAR = ed.END_YEAR;
+                    }
+                }
+                repo.UpdateEducation(Map.mapeducation(edu));
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
+        
         public void DeleteTrainer(TE.UserTable t)
         {
             try
@@ -138,6 +277,35 @@ namespace BusinessLogic
                 Console.WriteLine("Deleted user : "+t.Name);
             }
             catch(Exception ex) { Console.WriteLine(ex.Message); }
+        }
+
+        public void UpdateExperience(string? Email, Experience exp)
+        {
+            try
+            {
+                int id = efrepo.checkID(Email);
+                var experience = efrepo.GetExperience(id);
+                if (experience != null)
+                {
+                    if (experience.COMPANY1 != "string" && experience.COMPANY1 != exp.COMPANY1)
+                    {
+                        experience.COMPANY1 = exp.COMPANY1;
+                    }
+                    if (experience.COMPANY2 != "string" && experience.COMPANY2 != exp.COMPANY2)
+                    {
+                        experience.COMPANY2 = exp.COMPANY2;
+                    }
+                    if (experience.COMPANY3 != "string" && experience.COMPANY2 != exp.COMPANY2)
+                    {
+                        experience.COMPANY3 = exp.COMPANY2;
+                    }
+                }
+                repo.UpdateExperience(Map.mapexperience(experience));
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
