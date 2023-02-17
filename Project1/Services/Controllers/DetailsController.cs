@@ -39,12 +39,12 @@ namespace Services.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpPost("Add/{Email}")]
-        public ActionResult Add([FromRoute] string? Email, [FromBody] Details? d)
+        [HttpPost("Add")]
+        public ActionResult Add([FromQuery] string? Email, [FromQuery] string password, [FromBody] Details? d)
         {
             try
             {
-                var addedDetail = _logic.AddDetails(Email, d);
+                var addedDetail = _logic.AddDetails(Email,password, d);
                 return CreatedAtAction("Add", addedDetail);
             }
             catch (SqlException ex)

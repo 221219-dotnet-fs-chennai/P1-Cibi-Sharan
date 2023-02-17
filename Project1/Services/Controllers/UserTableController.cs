@@ -15,6 +15,26 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
+        [HttpGet("GetUserById")]
+        public ActionResult GetAction([FromQuery]string? email, [FromQuery]string password)
+        {
+            try
+            {
+                var user = _logic.GetUserDetails(email, password);
+                if (user != null) {
+                    return Ok(user);
+                }
+                return BadRequest();
+            }
+            catch (SqlException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpGet("GetAllUsers")]
         public ActionResult Get()
         {
@@ -54,14 +74,14 @@ namespace Services.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpPut("UpdateUserTable/{Email}")]
-        public ActionResult Update([FromRoute]string? Email, [FromBody]UserTable? t)
+        [HttpPut("UpdateUserTable")]
+        public ActionResult Update([FromQuery]string? Email,[FromQuery]string password, [FromBody]UserTable? t)
         {
             try
             {
                 if (!string.IsNullOrEmpty(Email))
                 {
-                    _logic.UpdateUserTable(Email, t);
+                    _logic.UpdateUserTable(Email,password, t);
                     return Ok(t);
                 }
                 else

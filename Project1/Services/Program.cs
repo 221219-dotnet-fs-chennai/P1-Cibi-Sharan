@@ -19,6 +19,12 @@ builder.Services.AddDbContext<Project1DbContext>(options => options.UseSqlServer
 builder.Services.AddScoped<ILogic, Logic>();
 
 builder.Services.AddScoped<IRepo, Repo>();
+builder.Services.AddMemoryCache();
+
+// enabling cors for any origin
+var AllowAllPolicy = "AllowAllPolicy";
+builder.Services.AddCors(options => options.AddPolicy(AllowAllPolicy, policy => { policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); }));
+
 //builder.Services.AddScoped<BusinessLogic.Logic>();
 var app = builder.Build();
 
@@ -28,6 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors();
 
 app.UseHttpsRedirection();
 

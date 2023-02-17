@@ -26,14 +26,22 @@ namespace BusinessLogic
             //context.SaveChanges();
             return Map.mapusertable(ut);
         }
-        public TE.Detail AddDetails(string? email, Details details)
+        public TE.Detail AddDetails(string? email,string password, Details details)
         {
             int id = action.GetId(email);
-            details.UserID = id;
-            details.Email = email;
-            //var entityDetail = Map.mapdetail(details);
-            repo.AddDetails(Map.mapdetail(details));
-            return Map.mapdetail(details);
+            //var user = _logic.GetUserDetails(email, password);
+            var user = GetUserDetails(email, password);
+            if (user != null)
+            {
+                    details.UserID = id;
+                    details.Email = email;
+                    //var entityDetail = Map.mapdetail(details);
+                    repo.AddDetails(Map.mapdetail(details));
+                    return Map.mapdetail(details);
+                
+            }
+            return null;
+            
         }
         
 
@@ -92,14 +100,17 @@ namespace BusinessLogic
             //repo.GetEducation(Map.mapeducation(ed));
             return Map.mapexperience(exp);
         }
-        public TE.UserTable GetUserDetails(string? email)
+        public TE.UserTable GetUserDetails(string? email, string password)
         {
             UserTable ed = new UserTable();
             int id = action.GetId(email);
             ed = efrepo.GetUserTable(id);
-            //ed = repo.DeleteUser(ed);
-            //ed = 
-            return Map.mapusertable(ed);
+            // check email and password are correct
+            if (ed.Email== email && ed.Password == password)
+            {
+                return Map.mapusertable(ed);
+            }
+            return null;
         }
         public List<TE.UserTable> GetAllUsers()
         {
@@ -146,7 +157,7 @@ namespace BusinessLogic
         //    ed =
         //    return Map.mapskill(skills);
         //}
-        public void UpdateUserTable(string? email, UserTable t)
+        public void UpdateUserTable(string? email,string password, UserTable t)
         {
             try
             {

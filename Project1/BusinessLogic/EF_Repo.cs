@@ -132,6 +132,7 @@ namespace BusinessLogic
                     UserId = id,
                     Name = d.Name,
                     EmailId= d.EmailId,
+                    Password = d.Password
                 };
             }
             return map.MapUserTable(table);
