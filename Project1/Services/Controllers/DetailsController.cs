@@ -56,8 +56,8 @@ namespace Services.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpPut("UpdateDetails/{Email}")]
-        public ActionResult UpdateDetails([FromRoute] string? Email, [FromBody] Details d)
+        [HttpPut("UpdateDetails")]
+        public ActionResult UpdateDetails([FromQuery] string? Email, [FromBody] Details d)
         {
             try
             {

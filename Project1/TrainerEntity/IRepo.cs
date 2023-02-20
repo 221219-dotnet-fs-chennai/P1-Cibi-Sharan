@@ -6,7 +6,7 @@ namespace TrainerEntity
     {
        
         public void AddDetails(Detail d);
-        public void AddUser(UserTable t);
+        public UserTable AddUser(UserTable t);
 
         public IEnumerable<UserTable> GetUsers();
         public void UpdateDetails(Detail d);

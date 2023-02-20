@@ -1,4 +1,5 @@
 ﻿using BusinessLogic;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -15,6 +16,7 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
+       // [EnableCors("AllowAllPolicy")]
         [HttpGet("GetUserById")]
         public ActionResult GetAction([FromQuery]string? email, [FromQuery]string password)
         {
@@ -58,12 +60,12 @@ namespace Services.Controllers
         }
         
         [HttpPost("SignUp")] // Trying to create a resource on the server
-        public ActionResult Add(UserTable? t)
+        public ActionResult Add([FromBody ]UserTable? t)
         {
             try
             {
                 var addedUserDet = _logic.AddUserTable(t);
-                return CreatedAtAction("Add", addedUserDet); //201 -> Serialization of restaurant object
+                return Ok( addedUserDet); //201 -> Serialization of restaurant object
             }
             catch (SqlException ex)
             {
@@ -75,13 +77,13 @@ namespace Services.Controllers
             }
         }
         [HttpPut("UpdateUserTable")]
-        public ActionResult Update([FromQuery]string? Email,[FromQuery]string password, [FromBody]UserTable? t)
+        public ActionResult Update([FromQuery]string? Email, [FromBody]UserTable? t)
         {
             try
             {
                 if (!string.IsNullOrEmpty(Email))
                 {
-                    _logic.UpdateUserTable(Email,password, t);
+                    _logic.UpdateUserTable(Email, t);
                     return Ok(t);
                 }
                 else

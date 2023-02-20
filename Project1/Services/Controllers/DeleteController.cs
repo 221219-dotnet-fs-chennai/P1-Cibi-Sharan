@@ -15,12 +15,12 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
-        [HttpDelete("DeleteTrainer/{Email}")]
-        public ActionResult Delete([FromRoute] string? Email, [FromRoute] string password)
+        [HttpDelete("DeleteTrainer")]
+        public ActionResult Delete([FromQuery] string? Email)
         {
             try
             {
-                var trainer = _logic.GetUserDetails(Email, password);
+                var trainer = _logic.GetDelDetails(Email);
                 if (!string.IsNullOrEmpty(Email))
                 {
                     _logic.DeleteTrainer(trainer);

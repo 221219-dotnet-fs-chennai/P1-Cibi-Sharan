@@ -22,25 +22,28 @@ namespace TrainerEntity
         {
             return context.UserTables.ToList();
         }
-        public void AddUser(UserTable userTable)
+        public UserTable AddUser(UserTable userTable)
         {
             //var td = context.UserTables;
             try
             {
-                context.Add(userTable);
+                context.UserTables.Add(userTable);
                 context.SaveChanges();
+               
             }
             catch (DbUpdateException e)
             {
+                Console.WriteLine("hii");
                 Console.WriteLine(e.StackTrace);
             }
+            return userTable;
         }
         public void AddSkill(Skill skill)
         {
             //var td = context.UserTables;
             try
             {
-                context.Add(skill);
+                context.Skills.Add(skill);
                 context.SaveChanges();
             }
             catch (DbUpdateException e)

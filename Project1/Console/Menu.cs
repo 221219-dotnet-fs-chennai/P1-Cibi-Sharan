@@ -74,7 +74,31 @@ namespace Project0
                     return "Menu";
             }
         }
-
+        
+        public string updateDetailsChoice()
+        {
+            Console.WriteLine("Enter '1' : Update Address");
+            Console.WriteLine("Enter '2' : Update About Me");
+            Console.WriteLine("Enter '3' : Update Phone Number");
+            Console.WriteLine("Enter '4' : Update Website");
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    return "Update Address";
+                case "2":
+                    return "Update About Me";
+                case "3":
+                    return "Update Phone Number";
+                case "4":
+                    return "Update Website";
+                case "5":
+                    return "Go Back";
+                default:
+                    Console.WriteLine("Enter a valid input");
+                    return "Menu";
+            }
+        }
         
     }
 }

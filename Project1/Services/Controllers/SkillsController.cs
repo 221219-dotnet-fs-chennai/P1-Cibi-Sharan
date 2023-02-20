@@ -14,7 +14,7 @@ namespace Services.Controllers
         {
             _logic = logic;
         }
-        [HttpGet("GetEducationDetails")]
+        [HttpGet("GetSkills")]
         public ActionResult GetSkills([FromQuery] string? Email)
         {
             try

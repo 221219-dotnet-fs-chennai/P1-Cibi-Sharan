@@ -21,10 +21,10 @@ namespace BusinessLogic
         public TE.UserTable AddUserTable(Models.UserTable ut)
         {
             //var entityUserTable = Map.mapusertable(ut);
-            repo.AddUser(Map.mapusertable(ut));
+           
             //context.Add(Map.mapusertable(ut));
             //context.SaveChanges();
-            return Map.mapusertable(ut);
+            return repo.AddUser(Map.mapusertable(ut));
         }
         public TE.Detail AddDetails(string? email,string password, Details details)
         {
@@ -112,6 +112,18 @@ namespace BusinessLogic
             }
             return null;
         }
+        public TE.UserTable GetDelDetails(string? email)
+        {
+            UserTable ed = new UserTable();
+            int id = action.GetId(email);
+            ed = efrepo.GetUserTable(id);
+            // check email and password are correct
+            if (ed.Email == email)
+            {
+                return Map.mapusertable(ed);
+            }
+            return null;
+        }
         public List<TE.UserTable> GetAllUsers()
         {
             var tb = context.UserTables.ToList();
@@ -157,22 +169,22 @@ namespace BusinessLogic
         //    ed =
         //    return Map.mapskill(skills);
         //}
-        public void UpdateUserTable(string? email,string password, UserTable t)
+        public void UpdateUserTable(string? email, UserTable t)
         {
             try
             {
+                //int id = efrepo.checkID(email);
                 int id = efrepo.checkID(email);
                 UserTable ut = efrepo.GetUserTable(id);
                 if (ut != null) { 
-                    if (ut.Name != "string" && ut.Name != t.Name)
+                    if (t.Name != "string" && t.Name != ut.Name)
                     {
                         ut.Name = t.Name;
                     }
-                    if (ut.Password != "string" && ut.Password!= t.Password)
+                    if (t.Password != "string" && t.Password!= ut.Password)
                     {
                         ut.Password = t.Password;
                     }
-                    
                 }
                 repo.UpdateUser(Map.mapusertable(ut));
             }

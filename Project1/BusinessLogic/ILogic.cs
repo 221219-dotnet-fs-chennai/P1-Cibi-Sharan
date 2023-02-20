@@ -35,10 +35,11 @@ namespace BusinessLogic
         //public TE.Education GetFilteredPercentage(double Percentage);
         public TE.Experience GetExperienceDetails(string? Email);
         public TE.UserTable GetUserDetails(string? Email, string password);
+        public TE.UserTable GetDelDetails(string? Email);
         public TE.Detail GetDetailDetails(string? Email);
         public TE.Skill GetSkillsDetails(string? Email);
         public void UpdateDetails(string? Email, Details d);
-        public void UpdateUserTable(string? Email, string password, UserTable userTable);
+        public void UpdateUserTable(string? Email, UserTable userTable);
         public void UpdateSkills(string? Email, Skills skills);
         public void UpdateEducation(string? Email, Education ed);
         public void DeleteTrainer(TE.UserTable t);
