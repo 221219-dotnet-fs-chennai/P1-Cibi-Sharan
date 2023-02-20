@@ -1,0 +1,145 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../intro-section-with-dropdown-navigation-main/signin.js"></script>
+    <title>UpdateUsertable</title>
+</head>
+<body>
+
+        <h1>Update UserTable</h1>
+        <button type="submit" onclick="updateusertable()">Button</button>
+
+
+        <ul>
+            
+        </ul>
+    
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../intro-section-with-dropdown-navigation-main/signin.js"></script>
+<script>
+
+</script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 40%;
+  right: 37%;
+  width: 400px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 24%;
+  right: 30%;
+
+  border: 3px solid #f1f1f1;
+  /* z-index: 9; */
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 500px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=number]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus .form-container input[type=number]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<h2>Popup Form</h2>
+<button class="open-button" id="openid" onclick="openForm()">Open Form</button>
+
+<div class="form-popup" id="myForm">
+  <form action="" class="form-container" id="modifyEducation">
+    <h1>Details</h1>
+
+    <label for="name"><b>FullName</b></label>
+    <input type="text" id="myname" placeholder="Enter name" name="name">
+
+    <label for="text"><b>Address</b></label>
+    <input type="text" id="myaddr" placeholder="Enter Address" name="address" >
+
+    <label for="aboutme"><b>About Me</b></label>
+    <input type="text" id="aboutme" placeholder="About You" name="abtme">
+
+    <label for="website"><b>Number</b></label>
+    <input type="number" id="phnnumber" placeholder="Number" name="number">
+
+    <label for="website"><b>Website</b></label>
+    <input type="text" id="website" placeholder="Website" name="website">
+
+    <button type="submit" class="btn" >Update</button>
+    <button type="button" id="btn-id" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+   document.getElementById('openid').addEventListener("click", updatedetails()) 
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+</body>
+</html>
