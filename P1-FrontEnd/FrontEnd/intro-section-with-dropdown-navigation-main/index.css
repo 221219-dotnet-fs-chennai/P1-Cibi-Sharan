@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap');
+* { 
+   font-family: 'Poppins', sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* text-transform: capitalize; */
+    text-decoration: none;
+}
+.intro{
+    width: 50%;
+    margin-bottom: 50%;
+}
+.right-image {
+    /* background: red; */
+    position: relative;
+    margin-left: 90%;
+    margin-top: 120%;
+    
+    /* -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+}
+.right-image img{
+    height: 500px;
+}
+.left-content{
+    position: absolute;
+    /* background: red; */
+    width: 400px;
+    /* -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    top: 50%;
+    right: 70%;
+}
+.left-content h1{
+    font-size: 50px;
+}
+.left-content p{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
+.signupcontent{
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 20px;
+}
+form{
+     padding: 15px;
+
+}
+.form-outline mb-4{
+    margin: 0; left: 0;
+}
+.form-outline mb-4 input{
+    padding: 15px;
+}
+body {
+    min-height: 100vh;
+    /* background-image: url('https://images.pexels.com/photos/14553701/pexels-photo-14553701.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); */
+    background-size: cover;
+    opacity: 0.7;
+    background-position: center;
+    background: rgb(255, 254, 254);
+    /* overflow: hidden; */
+    /* overflow-y: scroll; */
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0; right: 0;
+    background: #f5f4ef;
+    /* background: red; */
+    height: 100px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.4);
+    padding: 5px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+
+}
+.intro {
+    color: rgb(14, 13, 13);
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
+}
+.navbar {
+    
+}
+header .logo {
+    font-weight: bolder;
+    font-size: 25px;
+    color: #333;
+}
+
+.dropdowns {
+    background-color: green;
+}
+
+header .navbar ul{
+    list-style: none;
+}
+header .navbar ul li{
+    position: relative;
+    float: left;
+}
+header .navbar ul li a{
+    font-size: 20px;
+    padding: 20px;
+    color: #333;
+    display: block;
+}
+header .navbar ul li a:hover{
+    background: #333;
+    color: #efff;
+    padding: 10px;
+    
+}
+header .navbar ul li ul{
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: #efff;
+    display: none;
+}
+header .navbar ul li ul li{
+    width: 100%;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
+header .navbar ul li ul li ul{
+    left: 200px;
+    top: 0;
+}
+header .navbar ul li:focus-within > ul,
+header .navbar ul li:hover > ul {
+    display: initial;
+}
+#menu-bar{
+    display: none;
+}
+header label{
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    display: none;
+
+}
+
+
+@media(max-width: 991px){
+    header{
+        padding: 20px;
+    }
+
+    header label{
+        display: initial;
+    }
+
+    header .navbar {
+        position: absolute;
+        top: 100%; left: 0%; right: 0%;
+        background: #efff;
+        border-top: 1px solid rgba(0,0,0,.1);
+        display: none;
+    }
+
+    header .navbar ul li{
+        width: 100%;
+    }
+    header .navbar ul li ul{
+        position: relative;
+        width: 100%;
+    }
+    header .navbar ul li ul li{
+        background: #eee;
+    }
+    header .navbar ul li ul li ul{
+        width: 100%;
+        left: 0;
+    }
+    #menu-bar:checked ~ .navbar {
+        display: initial;
+    }
+}
+.about{
+    /* background: red; */
+    position: absolute;
+    margin-top: 65%;
+    box-sizing: border-box;
+    width: 50%;
+    height: fit-content;
+    margin-left: 8%;
+}
+.about h2{
+    text-decoration: underline;
+    text-decoration-style: dashed;
+}
+.about p{
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.about img{
+    width: 400px;
+    height: 380px;
+    position: absolute;
+    margin-left: 100%;
+    bottom: 50%;
+   
+}
+.container{
+    /* display: flex; */
+    width: 50%;
+    padding: 0px 15px;
+    
+}
+.card{
+   
+    
+}
+.container {
+    
+}
+.c1{
+    width: 50%;
+}
+.c2{
+    float: right;
+    left: 70%;
+    margin-top: -280px;
+    
+}
+.col-sm-5 img{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: 10%;
+    right: 100%;
+}

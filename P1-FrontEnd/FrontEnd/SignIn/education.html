@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signin.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="../intro-section-with-dropdown-navigation-main/signin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+    <style>
+        body{
+            /* background: rgb(26, 26, 26); */
+        }
+    </style>
+    <title>Education</title>
+</head>
+<body>
+<div class="wrapper">
+    <form action="" id="userEducationForm">
+        <div id="wizard">
+            <!-- SECTION 1 -->
+            <div class="detailshead">
+                <h1>Enter your Education Details</h1>
+            </div>
+            
+            <h4></h4>
+            <section>
+                <div class="form-row"> <input type="text" id="regno" class="form-control" placeholder="Enter Register Number"> </div>
+                <div class="form-row"> <input type="text" id="clgname" class="form-control" placeholder="Enter College Name"></div>
+                <div class="form-row"> <input type="text" id="stream" class="form-control" placeholder="Enter Stream"></div> 
+                <div class="form-row"> <input type="text" id="branch" class="form-control" placeholder="Enter Branch"></div>
+                <div class="form-row"> <input type="number" id="percentage" class="form-control" placeholder="Enter Percentage"></div>
+                <div class="form-row"> <input type="number" id="startyear" class="form-control" placeholder="Enter Start Year"></div> 
+                <div class="form-row"> <input type="number" id="endyear" class="form-control" placeholder="Enter End Year"></div>
+            </section> <!-- SECTION 3 -->
+           <div class="buttons">
+            <button type="button" class="btn1 btn btn-primary btn-block mb-4" onclick="addEducationTable()">Finish</button>
+           </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
