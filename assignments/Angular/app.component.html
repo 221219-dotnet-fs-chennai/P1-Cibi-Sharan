@@ -1,0 +1,118 @@
+<!--  <ul>
+  <li *ngFor="let associates of userarr">{{associates}}</li>
+</ul>
+<ul>
+  <li *ngFor="let associate_det of userlist">{{associate_det}}</li>
+</ul>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Salary</td>
+      <td>Location</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let associate_det of userlist">
+      <td>{{associate_det.name}}</td>
+      <td>{{associate_det.salary}}</td>
+      <td>{{associate_det.location}}</td>
+      <td *ngFor="let skill_det of associate_det.skills">
+        <ul>
+          <li>{{skill_det}}</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+<!-- forms -->
+<!-- 
+ <form #basicform='ngForm' (submit)=getData(basicform.value)>
+  <input ngModel type="text" 
+          name="name" 
+          placeholder="Enter username">
+
+  <input ngModel type="text" 
+          name="EmailId" 
+          placeholder="Enter MailId">
+
+  <input ngModel type="text" 
+          name="Phoneno" 
+          placeholder="Enter Mobile no">
+
+  <button type="submit"> sign </button>
+</form> -->
+
+<!-- <div>
+	<ul>
+	<li>
+		{{dataObject.name}}
+	</li>
+	<li>
+		{{dataObject.EmailId}}
+	</li>
+	<li>
+		{{dataObject.Phoneno}}
+	</li>
+	</ul>
+</div>   -->
+<!-- Component 1 => Card -->
+ <mat-card>
+  <mat-card-header>
+    <mat-card-title>Actions Buttons</mat-card-title>
+    <mat-card-subtitle>Start</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="start">
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>
+<br>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Actions Buttons</mat-card-title>
+    <mat-card-subtitle>End</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card> <br><br><hr>
+
+
+<!-- Multiple card elements -->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card><br><br><hr>
+
+<!-- Buttons -->
+<section>
+  <div class="example-label">Basic</div>
+  <div class="example-button-row">
+    <button mat-button>Basic</button>
+    <button mat-button color="primary">Primary</button>
+    <button mat-button color="accent">Accent</button>
+    <button mat-button color="warn">Warn</button>
+    <button mat-button disabled>Disabled</button>
+    <a mat-button href="https://www.google.com/" target="_blank">Link</a>
+  </div>
+</section><br><br><hr>
+
