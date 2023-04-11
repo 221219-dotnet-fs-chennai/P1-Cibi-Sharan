@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+@using (Html.BeginForm("SubmitForm", "DateController", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" class="form-control" id="date" name="date" /> 
+
+        <label for="cron">Cron exp:</label>
+        <input type="text" class="form-control" id="cron-exp" name="cronexp" />
+        <button type="submit">Submit</button>
+    </div>
+}
+
